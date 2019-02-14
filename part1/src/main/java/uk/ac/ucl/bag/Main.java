@@ -57,9 +57,10 @@ public class Main
 
       bag2 = factory.getBag();
       bag2.add("def");
-      bag2.add("def");
-      bag2.add("def");
       bag2.add("klm");
+      bag2.add("def");
+      bag2.add("def");
+
       System.out.print("bag2 all unique:             ");
       print(bag2);
       System.out.print("bag2 all:                    ");
