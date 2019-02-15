@@ -92,20 +92,24 @@ public class MapBag<T extends Comparable> extends AbstractBag<T> {
 
 
         private int index = 0;
-        Iterator iterator;
+        HashMap.Entry<T,Integer>[] valueSet;
 
         public boolean hasNext()
         {
-            iterator = contents.keySet().iterator();
-            return iterator.hasNext();
+
+            if (index < contents.size()){
+                valueSet = contents.entrySet().toArray(new HashMap.Entry[contents.size()]);
+                return true;
+            }
+            return false;
 
         }
 
 
         public T next()
         {
-            HashMap.Entry<T,Integer> entry = (HashMap.Entry) iterator.next();
-            return entry.getKey();
+
+            return valueSet[index++].getKey();
         }
     }
 
@@ -122,37 +126,40 @@ public class MapBag<T extends Comparable> extends AbstractBag<T> {
       This class implements an additional iterator that returns all values in a bag including a value for each copy.
       It is also a nested inner class.
      */
-    private class ArrayBagIterator implements Iterator<T>
+    private class MapBagIterator implements Iterator<T>
     {
         private int index = 0;
         private int count = 0;
+        HashMap.Entry<T,Integer>[] valueSet;
 
         public boolean hasNext()
         {
+            valueSet = contents.entrySet().toArray(new HashMap.Entry[0]);
+
             if (index < contents.size()) {
-                if (count < contents.get(index).count) return true;
-                if ((count == contents.get(index).count) && ((index + 1) < contents.size())) return true;
+                if (count < valueSet[index].getValue()) return true;
+                if ((count == valueSet[index].getValue()) && ((index + 1) < contents.size())) return true;
             }
             return false;
         }
 
         public T next()
         {
-            if (count < contents.get(index).count)
+            if (count < valueSet[index].getValue())
             {
-                T value = contents.get(index).value;
+                T value = valueSet[index].getKey();
                 count++;
                 return value;
             }
             count = 1;
             index++;
-            return contents.get(index).value;
+            return valueSet[index].getKey();
         }
     }
 
     public Iterator<T> allOccurrencesIterator()
     {
-        return new ArrayBag.ArrayBagIterator();
+        return new MapBagIterator();
     }
 
 
