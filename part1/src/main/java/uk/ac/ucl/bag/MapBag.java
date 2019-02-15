@@ -1,9 +1,7 @@
 package uk.ac.ucl.bag;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 public class MapBag<T extends Comparable> extends AbstractBag<T> {
 
