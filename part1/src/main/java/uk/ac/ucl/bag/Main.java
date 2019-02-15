@@ -38,7 +38,7 @@ public class Main
 
   public void go()
   {
-    factory.setBagClass("MapBag");
+    factory.setBagClass("LinkedListBag");
 
     try
     {

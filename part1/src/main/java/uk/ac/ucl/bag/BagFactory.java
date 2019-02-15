@@ -66,6 +66,10 @@ public class BagFactory<T extends Comparable>
     {
       return new MapBag<T>(maxSize);
     }
+  if (bagClass.equals("LinkedListBag"))
+  {
+      return new LinkedListBag<T>(maxSize);
+  }
     throw new BagException
       ("Attempting to use BagFactory to create something that is not a Bag");
   }

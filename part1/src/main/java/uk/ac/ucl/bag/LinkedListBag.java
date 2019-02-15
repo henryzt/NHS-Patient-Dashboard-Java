@@ -1,5 +1,7 @@
 package uk.ac.ucl.bag;
 
+import java.util.Iterator;
+
 public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
     private class Node<T>{
@@ -18,7 +20,31 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
     private int maxSize;
     private int nodeCounts;
-    Node<T> head = null;
+    private Node<T> head = null;
+
+
+    private Node<T> findNode(T value){
+        Node<T> current = head;
+
+        for(int i = 0; i < nodeCounts; i++){
+            if(current.value.compareTo(value) == 0){
+                return current;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    private Node<T> findLastNode(){
+        Node<T> current = head;
+
+        while(current.next != null){
+            current = current.next;
+        }
+        return current;
+    }
+
+
 
     public LinkedListBag() throws BagException
     {
@@ -40,27 +66,29 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
     }
 
 
+
+
+
+
     public void add(T value) throws BagException{
         if(head == null){
-            head = new Node<>(value,1,null);
+            head = new Node<>(value,0,null);
         }
 
-        Node<T> current = head;
+        Node<T> target = findNode(value);
 
-        for(int i = 0; i < nodeCounts; i++){
-            if(current.value.compareTo(value) == 0){
-                current.occurrences++;
-                return;
-            }
-            current = current.next;
+        if(target != null){
+            target.occurrences++;
+            return;
+        }else {
+            target = findLastNode();
         }
 
-        if (nodeCounts < maxSize)
-        {
-            current.next = new Node<>(value,1,null);
+
+        if (nodeCounts < maxSize) {
+            target.next = new Node<>(value,1,null);
         }
-        else
-        {
+        else {
             throw new BagException("Bag is full");
         }
     }
@@ -76,31 +104,108 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
 
     public boolean contains(T value) {
-        Node<T> current = head;
-
-        for(int i = 0; i < nodeCounts; i++){
-            if(current.value.compareTo(value) == 0){
-                return true;
-            }
-            current = current.next;
+        if(findNode(value)!=null){
+            return true;
         }
         return false;
     }
 
     public int countOf(T value)
     {
-        Node<T> current = head;
-
-        for(int i = 0; i < nodeCounts; i++){
-            if(current.value.compareTo(value) == 0){
-                return current.occurrences;
-            }
-            current = current.next;
+        Node target = findNode(value);
+        if(target!= null){
+            return target.occurrences;
         }
         return 0;
     }
 
+    public void remove(T value)
+    {
+        Node<T> current = head;
 
+        for(int i = 0; i < nodeCounts; i++){
+            if(current.next.value.compareTo(value) == 0){
+                Node<T> toRemove = current.next;
+                toRemove.occurrences--;
+                if(toRemove.occurrences == 0) {
+                    current.next = toRemove.next;
+                    nodeCounts--;
+                }
+                return;
+            }
+            current = current.next;
+        }
+    }
+
+
+    public boolean isEmpty()
+    {
+        return nodeCounts == 0;
+    }
+
+    public int size()
+    {
+        return nodeCounts;
+    }
+
+
+
+    private class LinkedListBagUniqueIterator implements Iterator<T>
+    {
+        private Node<T> current = new Node<>(null,0,head);
+
+        public boolean hasNext() {
+            return (current.next != null);
+        }
+
+        public T next(){
+            current = current.next;
+            return current.value;
+        }
+    }
+
+    public Iterator<T> iterator()
+    {
+        return new LinkedListBagUniqueIterator();
+    }
+
+
+
+
+    private class LinkedListBagIterator implements Iterator<T>
+    {
+        private Node<T> current = head;
+        private int index = 0;
+        private int count = 0;
+
+        public boolean hasNext()
+        {
+            if (index < nodeCounts) {
+                if (count < current.occurrences) return true;
+                if ((count == current.occurrences) && ((index + 1) < nodeCounts-1)) return true;
+            }
+            return false;
+        }
+
+        public T next()
+        {
+            if (count < current.occurrences)
+            {
+                T value = current.value;
+                count++;
+                return value;
+            }
+            count = 1;
+            index++;
+            current = current.next;
+            return current.value;
+        }
+    }
+
+    public Iterator<T> allOccurrencesIterator()
+    {
+        return new LinkedListBagIterator();
+    }
 
 
 }
