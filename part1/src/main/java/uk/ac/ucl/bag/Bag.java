@@ -105,7 +105,7 @@ public interface Bag<T extends Comparable> extends Iterable<T>
    * returning each occurrence. This iterator will return the full set of values including all the copies.
    * @return The new Iterator.
    */
-  public Iterator<T> allOccurrencesIterator();
+  Iterator<T> allOccurrencesIterator();
 
   /*
   This method declaration is inherited from interface Iterator, so not redeclared here.
@@ -113,4 +113,8 @@ public interface Bag<T extends Comparable> extends Iterable<T>
   Return a standard iterator, giving each unique value in turn.
   public Iterator<T> iterator();
    */
+
+  String toString();
+
+  void removeAll(T object);
 }

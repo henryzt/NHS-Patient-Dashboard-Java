@@ -37,13 +37,10 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
     private Node<T> findLastNode(){
         Node<T> current = head;
-//        int count = 1;
         while(current.next != null){
             current = current.next;
-//            count++;
         }
 
-//        System.out.println("【new:"+count+" old:"+ nodeCounts + "】");
         return current;
     }
 

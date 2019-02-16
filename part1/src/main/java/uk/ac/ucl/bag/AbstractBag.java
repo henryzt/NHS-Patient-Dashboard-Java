@@ -37,4 +37,38 @@ public abstract class AbstractBag<T extends Comparable> implements Bag<T>
     return result;
   }
 
+  public String toString()
+  {
+
+    boolean first = true;
+    String result;
+    result = "[";
+    for (T value : this){
+
+      if (!first) { result += " , "; }
+      first = false;
+
+      result += value;
+      result += " : ";
+      result += this.countOf(value);
+
+
+    }
+    result += "]";
+    return result;
+  }
+
+  public void removeAll(T object){
+
+  }
+
+
+  public void removeAllCopies(T object){
+    for(int i = 0; i < this.countOf(object) - 1; i++){
+      this.remove(object);
+    }
+
+  }
+
+
 }
