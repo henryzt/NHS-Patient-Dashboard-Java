@@ -37,10 +37,13 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
     private Node<T> findLastNode(){
         Node<T> current = head;
-
+//        int count = 1;
         while(current.next != null){
             current = current.next;
+//            count++;
         }
+
+//        System.out.println("【new:"+count+" old:"+ nodeCounts + "】");
         return current;
     }
 
@@ -175,14 +178,13 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
     private class LinkedListBagIterator implements Iterator<T>
     {
         private Node<T> current = head;
-        private int index = 0;
         private int count = 0;
 
         public boolean hasNext()
         {
-            if (index < nodeCounts) {
+            if (current!=null) {
                 if (count < current.occurrences) return true;
-                if ((count == current.occurrences) && ((index + 1) < nodeCounts-1)) return true;
+                if ((count == current.occurrences) && (current.next!=null)) return true;
             }
             return false;
         }
@@ -196,7 +198,6 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
                 return value;
             }
             count = 1;
-            index++;
             current = current.next;
             return current.value;
         }
