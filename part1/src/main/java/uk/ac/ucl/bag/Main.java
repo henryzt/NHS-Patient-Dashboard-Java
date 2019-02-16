@@ -38,7 +38,9 @@ public class Main
 
   public void go()
   {
-    factory.setBagClass("LinkedListBag");
+    factory.setBagClass("ArrayBag");
+//    factory.setBagClass("MapBag");
+//    factory.setBagClass("LinkedListBag");
 
     try
     {
@@ -76,9 +78,7 @@ public class Main
       printAll(bag3);
 
       bag3.remove("123");
-      bag3.remove("123");
-      bag3.remove("123");
-      System.out.print("bag3 removed:                ");
+      System.out.print("bag3 removed one 123:        ");
       printAll(bag3);
 
 
@@ -91,6 +91,9 @@ public class Main
       print(bag5);
 
       System.out.print("bag4.toString:               ");
+      System.out.println(bag4.toString());
+      System.out.print("bag4.removeAllCopies:        ");
+      bag4.removeAllCopies();
       System.out.println(bag4.toString());
 
     }

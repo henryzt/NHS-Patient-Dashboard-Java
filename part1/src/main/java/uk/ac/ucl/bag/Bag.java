@@ -116,5 +116,5 @@ public interface Bag<T extends Comparable> extends Iterable<T>
 
   String toString();
 
-  void removeAll(T object);
+  void removeAllCopies();
 }
