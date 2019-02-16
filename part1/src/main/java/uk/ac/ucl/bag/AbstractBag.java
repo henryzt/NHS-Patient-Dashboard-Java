@@ -71,4 +71,22 @@ public abstract class AbstractBag<T extends Comparable> implements Bag<T>
   }
 
 
+  public Bag<T> subtract(Bag<T> bagForSubtract) throws BagException{
+      Bag<T> result = BagFactory.getInstance().getBag();
+
+      for (T object : this) {
+          int newCount = this.countOf(object) - bagForSubtract.countOf(object);
+          if(newCount > 0){
+              result.addWithOccurrences(object,newCount);
+          }
+
+      }
+
+
+      return result;
+  }
+
+
+
+
 }

@@ -77,9 +77,9 @@ public class Main
       System.out.print("bag3 all:                    ");
       printAll(bag3);
 
-      bag3.remove("123");
-      System.out.print("bag3 removed one 123:        ");
-      printAll(bag3);
+//      bag3.remove("123");
+//      System.out.print("bag3 removed one 123:        ");
+//      printAll(bag3);
 
 
       System.out.print("createMergedAllOccurrences:  ");
@@ -95,6 +95,14 @@ public class Main
       System.out.print("bag4.removeAllCopies:        ");
       bag4.removeAllCopies();
       System.out.println(bag4.toString());
+
+      System.out.print("bag2 subtract bag1:          ");
+      Bag<String> bag6 = bag2.subtract(bag1);
+      printAll(bag6);
+
+      System.out.print("bag3 subtract bag1:          ");
+      Bag<String> bag7 = bag3.subtract(bag1);
+      printAll(bag7);
 
     }
     catch (BagException e)
