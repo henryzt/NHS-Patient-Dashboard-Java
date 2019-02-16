@@ -24,11 +24,16 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
 
     private Node<T> findNode(T value){
+
         Node<T> current = head;
+
 
         for(int i = 0; i < nodeCounts; i++){
             if(current.value.compareTo(value) == 0){
                 return current;
+            }
+            if(current.next == null){
+                break;
             }
             current = current.next;
         }

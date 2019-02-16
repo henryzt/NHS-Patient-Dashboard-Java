@@ -38,9 +38,9 @@ public class Main
 
   public void go()
   {
-    factory.setBagClass("ArrayBag");
+//    factory.setBagClass("ArrayBag");
 //    factory.setBagClass("MapBag");
-//    factory.setBagClass("LinkedListBag");
+    factory.setBagClass("LinkedListBag");
 
     try
     {
