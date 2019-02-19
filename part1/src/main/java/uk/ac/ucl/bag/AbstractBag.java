@@ -7,7 +7,12 @@ package uk.ac.ucl.bag;
  * New bag objects are created using a BagFactory, which can be configured in the application
  * setup to select which bag implementation is to be used.
  */
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public abstract class AbstractBag<T extends Comparable> implements Bag<T>
 {
@@ -87,6 +92,25 @@ public abstract class AbstractBag<T extends Comparable> implements Bag<T>
   }
 
 
+  public void saveBagToFile(String fileName) throws IOException {
+    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+    writer.write(this.toString());
+    writer.close();
+
+  }
+
+  public void readFileToBag(String fileName) throws IOException{
+    String content = "";
+    try (Scanner scanner = new Scanner(new File(fileName))) {
+      while (scanner.hasNext()) {
+        content += scanner.nextLine();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    System.out.println(content);
+  }
 
 
 }

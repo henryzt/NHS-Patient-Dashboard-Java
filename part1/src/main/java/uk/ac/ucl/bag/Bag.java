@@ -1,5 +1,6 @@
 package uk.ac.ucl.bag;
 
+import java.io.IOException;
 import java.util.Iterator;
 
 /**
@@ -119,4 +120,8 @@ public interface Bag<T extends Comparable> extends Iterable<T>
   void removeAllCopies();
 
   Bag<T> subtract(Bag<T> bag) throws BagException;
+
+  void saveBagToFile(String fileName) throws IOException;
+
+  void readFileToBag(String fileName) throws IOException;
 }

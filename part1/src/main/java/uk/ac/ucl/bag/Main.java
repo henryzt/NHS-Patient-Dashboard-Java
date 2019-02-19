@@ -82,11 +82,11 @@ public class Main
 //      printAll(bag3);
 
 
-      System.out.print("createMergedAllOccurrences:  ");
+      System.out.print("b4createMergedAllOccurrences:");
       Bag<String> bag4 = bag1.createMergedAllOccurrences(bag3);
       printAll(bag4);
 
-      System.out.print("createMergedAllUnique:       ");
+      System.out.print("b5createMergedAllUnique:     ");
       Bag<String> bag5 = bag1.createMergedAllUnique(bag3);
       print(bag5);
 
@@ -100,8 +100,8 @@ public class Main
       Bag<String> bag6 = bag2.subtract(bag1);
       printAll(bag6);
 
-      System.out.print("bag3 subtract bag1:          ");
-      Bag<String> bag7 = bag3.subtract(bag1);
+      System.out.print("bag5 subtract bag1:          ");
+      Bag<String> bag7 = bag5.subtract(bag1);
       printAll(bag7);
 
     }
