@@ -109,7 +109,18 @@ public abstract class AbstractBag<T extends Comparable> implements Bag<T>
       e.printStackTrace();
     }
 
-    System.out.println(content);
+    content = content.replaceAll(" |\\[|\\]","");
+    String[] entries = content.split(",");
+    for(String entryComb : entries){
+        String[] entry = entryComb.split(":");
+        try {
+            this.addWithOccurrences((T) entry[0], Integer.parseInt(entry[1]));
+        }catch (BagException e){
+            e.printStackTrace();
+        }
+    }
+
+//    System.out.println(content);
   }
 
 
