@@ -20,6 +20,7 @@ public class Main
       System.out.print(value);
     }
     System.out.println("}");
+
   }
 
   public void printAll(Bag<String> bag)

@@ -7,10 +7,7 @@ package uk.ac.ucl.bag;
  * New bag objects are created using a BagFactory, which can be configured in the application
  * setup to select which bag implementation is to be used.
  */
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -100,16 +97,22 @@ public abstract class AbstractBag<T extends Comparable> implements Bag<T>
   }
 
   public void readFileToBag(String fileName) throws IOException{
-    String content = "";
-    try (Scanner scanner = new Scanner(new File(fileName))) {
-      while (scanner.hasNext()) {
-        content += scanner.nextLine();
+
+    StringBuilder builder = new StringBuilder();
+    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+      String currentLine;
+      while ((currentLine = reader.readLine()) != null) {
+        builder.append(currentLine).append("\n");
       }
-    } catch (IOException e) {
+    }
+    catch (IOException e) {
       e.printStackTrace();
     }
+    String content =  builder.toString();
 
-    content = content.replaceAll(" |\\[|\\]","");
+
+
+    content = content.replaceAll(" |\\[|\\]|\n","");
     String[] entries = content.split(",");
     for(String entryComb : entries){
         String[] entry = entryComb.split(":");
