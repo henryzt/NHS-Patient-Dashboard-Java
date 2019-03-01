@@ -102,7 +102,7 @@ public abstract class AbstractBag<T extends Comparable> implements Bag<T>
     try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
       String currentLine;
       while ((currentLine = reader.readLine()) != null) {
-        builder.append(currentLine).append("\n");
+        builder.append(currentLine);
       }
     }
     catch (IOException e) {
@@ -112,7 +112,7 @@ public abstract class AbstractBag<T extends Comparable> implements Bag<T>
 
 
 
-    content = content.replaceAll(" |\\[|\\]|\n","");
+    content = content.replaceAll(" |\\[|\\]","");
     String[] entries = content.split(",");
     for(String entryComb : entries){
         String[] entry = entryComb.split(":");

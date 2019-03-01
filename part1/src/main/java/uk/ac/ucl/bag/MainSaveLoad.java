@@ -24,11 +24,11 @@ public class MainSaveLoad {
         doubleBag.add(5.4);
         doubleBag.addWithOccurrences(6.66,6);
 
-        System.out.println(stringBag.toString());
+        System.out.println(doubleBag.toString());
 
         try {
 
-            stringBag.saveBagToFile("test.txt");
+            doubleBag.saveBagToFile("test.txt");
 
             Bag<Double> readBag = doubleFactory.getBag();
             readBag.readFileToBag("test.txt");
