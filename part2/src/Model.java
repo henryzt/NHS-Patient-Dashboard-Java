@@ -3,8 +3,8 @@ import java.util.List;
 
 public class Model {
     private List<Patient> patients;
-    private ReadCSV csv;
-    private JSONFormatter json;
+    private ReadCSV csv = new ReadCSV();
+    private JSONFormatter json = new JSONFormatter();
 
     Model(){
         patients = new ArrayList<>();
@@ -30,6 +30,10 @@ public class Model {
 
     public String getId(Patient p){
         return p.get("ID");
+    }
+
+    public Patient getPatientByIndex(int i){
+        return patients.get(i);
     }
 
 }

@@ -8,12 +8,13 @@ public class MainTest {
         test.addRecord("OK","Test");
         System.out.println(test.get("FIRST"));
 
-        List<Patient> patients = new ReadCSV().readCSV("patients100.csv");
-//        for(Patient p : patients){
-//            System.out.println(p.get("FIRST"));
-//        }
 
-        System.out.println(new JSONFormatter().getSinglePatientJson(patients.get(0)));
+
+        Model model = new Model();
+
+        model.readFile("patients100.csv");
+        System.out.println(model.getAllPatients());
+        System.out.println(model.getPatient(model.getPatientByIndex(0)));
 
     }
 

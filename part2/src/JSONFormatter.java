@@ -35,7 +35,7 @@ public class JSONFormatter {
 
         for(String json : jsons){
             builder.append(json);
-            builder.append("\",\n");
+            builder.append(",\n");
         }
         builder.deleteCharAt(builder.lastIndexOf(","));
         builder.append("]");
