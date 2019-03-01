@@ -13,7 +13,7 @@ public class MainTest {
 //            System.out.println(p.get("FIRST"));
 //        }
 
-        System.out.println(new JSONFormatter().getJson(patients.get(0)));
+        System.out.println(new JSONFormatter().getSinglePatientJson(patients.get(0)));
 
     }
 

@@ -28,7 +28,7 @@ public class ReadCSV {
 
     }
 
-    private String[] seprateComma(String row){
+    private String[] separateComma(String row){
         return row.split(",");
     }
 
@@ -42,7 +42,7 @@ public class ReadCSV {
 
         int current = 0;
         for(String row : content){
-            String[] entry = seprateComma(row);
+            String[] entry = separateComma(row);
 
             if(current == 0){
                 fields = entry;
