@@ -9,9 +9,12 @@ public class MainTest {
         System.out.println(test.get("FIRST"));
 
         List<Patient> patients = new ReadCSV().readCSV("patients100.csv");
-        for(Patient p : patients){
-            System.out.println(p.get("FIRST"));
-        }
+//        for(Patient p : patients){
+//            System.out.println(p.get("FIRST"));
+//        }
+
+        System.out.println(new JSONFormatter().getJson(patients.get(0)));
+
     }
 
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Patient {
     private HashMap<String,String> entry;
@@ -18,6 +19,10 @@ public class Patient {
 
     public void set(String field, String value){
         entry.replace(field,value);
+    }
+
+    public String[] getFields(){
+        return entry.keySet().toArray(new String[0]);
     }
 
 
