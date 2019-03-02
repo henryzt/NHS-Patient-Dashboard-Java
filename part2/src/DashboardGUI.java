@@ -1,5 +1,8 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DashboardGUI {
     private JFrame f;
@@ -50,7 +53,7 @@ public class DashboardGUI {
         JPanel bottomLeft = new JPanel();
         bottomLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
         JButton bSearch = new JButton("Search");
-        JTextField text = new JTextField("Text field", 15);
+        JTextField text = new JTextField("Search...",10);
         bottomLeft.add(text);
         bottomLeft.add(bSearch);
 
@@ -94,7 +97,39 @@ public class DashboardGUI {
         f.setVisible(true);//making the frame visible
 
 
+
+        //----------------------Actions
+
+        bReadCsv.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                JOptionPane.showMessageDialog(f, "Eggs are not supposed to be green.");
+                String path = fileChooser(FileDialog.LOAD);
+                if(path != null){
+                    System.out.println(path);
+                }
+            }
+        });
+
+
+
+
+
     }
+
+
+    private String fileChooser(int mode){
+        FileDialog dialog = new FileDialog(f, "Select a File Path");
+        dialog.setMode(mode);
+        dialog.setVisible(true);
+        String file = dialog.getFile();
+        if(file == null){
+            return null;
+        }
+        return dialog.getDirectory() + file;
+    }
+
+
 
     public static void main(String[] args) {
         new DashboardGUI();
