@@ -4,14 +4,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static javax.swing.BorderFactory.createEmptyBorder;
+
 public class DashboardGUI {
     private JFrame f;
+    private GUIController controller;
+    private String[] patientNames = {};
+
+
     DashboardGUI() {
-        //test, src = https://www.javatpoint.com/java-swing
+
+        controller = new GUIController();
+
         f = new JFrame(); //creating instance of JFrame
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panelMain = new JPanel();
-        JPanel pWest = new JPanel();
+        JPanel pWest = new JPanel(new BorderLayout());
         JPanel pNorth = new JPanel();
         JPanel pSouth = new JPanel();
         JPanel pEast = new JPanel();
@@ -34,15 +42,24 @@ public class DashboardGUI {
 
         //--------------------West
 
-        String week[]= { "Monday","Tuesday","Wednesday",
-                "Thursday","Friday","Saturday","Sunday","asdasd"};
-        JList list = new JList(week);
 
 
-        list.setPreferredSize(new Dimension(200, 500));
+        DefaultListModel<String> listModel = new DefaultListModel<>();
 
-        pWest.add(list);
-//        pWest.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        JList<String> list = new JList<>(listModel);
+
+//        list = new JList(patientNames);
+        JScrollPane scrollPane = new JScrollPane();
+
+//        scrollPane.setPreferredSize(new Dimension(200,500));
+        scrollPane.setViewportView(list);
+
+        scrollPane.setBorder(createEmptyBorder());;
+
+
+        pWest.add(scrollPane,BorderLayout.CENTER);
+
+//        pWest.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
         pWest.setBackground(Color.WHITE);
 
 
@@ -70,13 +87,13 @@ public class DashboardGUI {
 
 
 //        pSouth.setPreferredSize(new Dimension(900, 50));
-        pSouth.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
+        pSouth.setBorder(createEmptyBorder(0, 5, 0, 5));
 
         //---------------------Center
 
         JTextArea details = new JTextArea("Patient Details...");
         details.setWrapStyleWord(true);
-        pEast.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+        pEast.setBorder(createEmptyBorder(0, 5, 0, 0));
         pEast.setLayout(new BorderLayout());
         pEast.add(details);
 
@@ -103,7 +120,8 @@ public class DashboardGUI {
         bReadCsv.addActionListener((ActionEvent e) -> {
                 String path = fileChooser(FileDialog.LOAD);
                 if(path != null){
-                    System.out.println(path);
+                    listModel.addAll(controller.getPatientList(path));
+
                 }
             });
 

@@ -36,4 +36,22 @@ public class Model {
         return patients.get(i);
     }
 
+    public List<String> getNameArray(){
+        List<String> names = new ArrayList<>();
+        for(Patient p : patients){
+            names.add(p.get("FIRST") + " " + p.get("LAST"));
+        }
+
+        return names;
+    }
+
+    public String[] getIdArray(){
+        List<String> ids = new ArrayList<>();
+        for(Patient p : patients){
+            ids.add(p.get("ID"));
+        }
+
+        return ids.toArray(String[]::new);
+    }
+
 }
