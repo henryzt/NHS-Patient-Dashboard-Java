@@ -100,20 +100,16 @@ public class DashboardGUI {
 
         //----------------------Actions
 
-        bReadCsv.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                JOptionPane.showMessageDialog(f, "Eggs are not supposed to be green.");
+        bReadCsv.addActionListener((ActionEvent e) -> {
                 String path = fileChooser(FileDialog.LOAD);
                 if(path != null){
                     System.out.println(path);
                 }
-            }
-        });
+            });
 
 
 
-
+//                JOptionPane.showMessageDialog(f, "Eggs are not supposed to be green.");
 
     }
 
