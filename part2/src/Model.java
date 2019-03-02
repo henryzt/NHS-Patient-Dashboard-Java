@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +57,18 @@ public class Model {
         return ids.toArray(String[]::new);
     }
 
+
+    public boolean saveJsonTo(String path, String json){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            writer.write(json);
+            writer.close();
+            return true;
+        }catch (IOException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 

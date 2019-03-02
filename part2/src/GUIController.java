@@ -32,4 +32,8 @@ public class GUIController {
         return model.getAllPatients();
     }
 
+    public boolean saveJsonTo(String path){
+        return model.saveJsonTo(path, getAllJson());
+    }
+
 }

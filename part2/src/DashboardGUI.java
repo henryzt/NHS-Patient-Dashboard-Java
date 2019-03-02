@@ -121,6 +121,8 @@ public class DashboardGUI {
 
         bReadCsv.addActionListener((ActionEvent e) -> loadFromCSV());
 
+        bSaveJson.addActionListener((ActionEvent e) -> saveTo());
+
 
         list.addListSelectionListener((ListSelectionEvent e) -> {
                 if(list.getSelectedIndex() != -1) {
@@ -162,6 +164,21 @@ public class DashboardGUI {
     }
 
 
+    private void saveTo(){
+        String path = fileChooser(FileDialog.SAVE);
+        if(path == null){
+            return;
+        }
+
+        String msg;
+        if(controller.saveJsonTo(path)){
+            msg = "All patients detail successfully saved!";
+        }else {
+            msg = "Fail to save file.";
+        }
+        JOptionPane.showMessageDialog(f, msg, "Notice", JOptionPane.INFORMATION_MESSAGE);
+
+    }
 
     private String fileChooser(int mode){
         FileDialog dialog = new FileDialog(f, "Select a File Path");
