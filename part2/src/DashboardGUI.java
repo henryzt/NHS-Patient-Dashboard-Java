@@ -45,15 +45,15 @@ public class DashboardGUI {
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
         JList<String> list = new JList<>(listModel);
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(list);
-        scrollPane.setBorder(createEmptyBorder());
+        JScrollPane spList = new JScrollPane();
+        spList.setViewportView(list);
+        spList.setBorder(createEmptyBorder());
 
-        Dimension d = scrollPane.getPreferredSize();
+        Dimension d = spList.getPreferredSize();
         d.width = 240;
-        scrollPane.setPreferredSize(d);
+        spList.setPreferredSize(d);
 
-        pWest.add(scrollPane,BorderLayout.CENTER);
+        pWest.add(spList,BorderLayout.CENTER);
         pWest.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 0));
         pWest.setBackground(Color.WHITE);
 
@@ -89,9 +89,13 @@ public class DashboardGUI {
 
         JTextArea details = new JTextArea("Load Patient File to Begin...");
         details.setWrapStyleWord(true);
+        JScrollPane spText = new JScrollPane();
+        spText.setViewportView(details);
+        spText.setBorder(createEmptyBorder());
+
         pEast.setBorder(createEmptyBorder(0, 5, 0, 0));
         pEast.setLayout(new BorderLayout());
-        pEast.add(details);
+        pEast.add(spText);
 
 
 
@@ -115,25 +119,42 @@ public class DashboardGUI {
         bReadCsv.addActionListener((ActionEvent e) -> {
                 String path = fileChooser(FileDialog.LOAD);
                 if(path != null){
-                    controller.LoadPatients(path);
-                    listModel.clear();
-                    listModel.addAll(controller.getPatientNames());
-                    details.setText(controller.getAllJson());
+                    if(controller.LoadPatients(path)) {
+                        JDialog dialog = showLoading(f);
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                listModel.clear();
+                                listModel.addAll(controller.getPatientNames());
+                                details.setText(controller.getAllJson());
+                                dialog.dispose();
+                            }
+                        }).start();
+
+                        dialog.setVisible(true);
+
+
+
+                    }else{
+                        JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid.",
+                                "File Error",
+                                JOptionPane.ERROR_MESSAGE);
+
+                    }
 
                 }
             });
 
 
         list.addListSelectionListener((ListSelectionEvent e) -> {
-            if(list.getSelectedIndex() != -1) {
-                details.setText(controller.getPatientJson(list.getSelectedIndex()));
-            }
+                if(list.getSelectedIndex() != -1) {
+                    details.setText(controller.getPatientJson(list.getSelectedIndex()));
+                }
             }
         );
 
 
-
-//                JOptionPane.showMessageDialog(f, "Eggs are not supposed to be green.");
 
     }
 
@@ -147,6 +168,13 @@ public class DashboardGUI {
             return null;
         }
         return dialog.getDirectory() + file;
+    }
+
+    private JDialog showLoading(JFrame f){
+        final JOptionPane optionPane = new JOptionPane("Loading...Please wait", JOptionPane.INFORMATION_MESSAGE,
+                JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null); //create an empty loading dialog
+        return optionPane.createDialog(f, "Notice");
+
     }
 
 

@@ -10,8 +10,14 @@ public class GUIController {
         model = new Model();
     }
 
-    public void LoadPatients(String filePath){
-        model.readFile(filePath);
+    public boolean LoadPatients(String filePath){
+        try {
+            model.readFile(filePath);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public List<String> getPatientNames(){
