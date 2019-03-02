@@ -11,6 +11,7 @@ public class DashboardGUI {
         JPanel pWest = new JPanel();
         JPanel pNorth = new JPanel();
         JPanel pSouth = new JPanel();
+        JPanel pEast = new JPanel();
 
 
         //----------North
@@ -19,8 +20,8 @@ public class DashboardGUI {
         JButton bSaveJson = new JButton("Save to Json");
 //        b.setBounds(130, 100, 100, 40);
 
-        pNorth.setLayout(new GridLayout(1, 3,20,20));
-        pNorth.setBorder(BorderFactory.createEmptyBorder(5, 80, 5, 80));
+        pNorth.setLayout(new FlowLayout(FlowLayout.CENTER));
+//        pNorth.setBorder(BorderFactory.createEmptyBorder(5, 80, 5, 80));
 
         pNorth.add(bReadCsv);
         pNorth.add(bReadJson);
@@ -44,13 +45,39 @@ public class DashboardGUI {
 
 
         //---------------------South
-        pSouth.setLayout(new FlowLayout(FlowLayout.LEFT));
+        pSouth.setLayout(new GridLayout(1, 3,20,20));
+
+        JPanel bottomLeft = new JPanel();
+        bottomLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
         JButton bSearch = new JButton("Search");
         JTextField text = new JTextField("Text field", 15);
-        pSouth.add(text);
-        pSouth.add(bSearch);
+        bottomLeft.add(text);
+        bottomLeft.add(bSearch);
+
+        JPanel bottomCenter = new JPanel();
+        bottomCenter.add(new JLabel("Henry Zhang"));
+
+        JPanel bottomRight = new JPanel();
+        bottomRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        bottomRight.add(new JLabel("Total Patient - 100"));
+
+        pSouth.add(bottomLeft);
+//        pSouth.add(bottomCenter);
+        pSouth.add(bottomRight);
+
+
 //        pSouth.setPreferredSize(new Dimension(900, 50));
-//        pSouth.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 80));
+        pSouth.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
+
+        //---------------------Center
+
+        JTextArea details = new JTextArea("Patient Details...");
+        details.setWrapStyleWord(true);
+        pEast.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+        pEast.setLayout(new BorderLayout());
+        pEast.add(details);
+
+
 
 
         //---------------------All
@@ -58,6 +85,7 @@ public class DashboardGUI {
         panelMain.add(pNorth, BorderLayout.NORTH);
         panelMain.add(pWest, BorderLayout.WEST);
         panelMain.add(pSouth , BorderLayout.SOUTH);
+        panelMain.add(pEast , BorderLayout.CENTER);
 
 
 
