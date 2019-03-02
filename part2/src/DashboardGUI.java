@@ -76,7 +76,7 @@ public class DashboardGUI {
 
         JPanel bottomRight = new JPanel();
         bottomRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        bottomRight.add(new JLabel("Total Patient - 100"));
+        bottomRight.add(new JLabel("Henry Zhang"));
 
         pSouth.add(bottomLeft);
 //        pSouth.add(bottomCenter);
@@ -139,6 +139,15 @@ public class DashboardGUI {
         String path = fileChooser(FileDialog.LOAD);
         if(path != null){
             if(controller.LoadPatients(path)) {
+                if(controller.checkLoadedPatientName()){
+                    int confirmDialog = JOptionPane.showConfirmDialog(null,
+                            "The file loaded doesn't seems to be a correct patient CSV file, \nthis might cause errors. Do you wish to proceed anyway?",
+                            "Warning", JOptionPane.YES_NO_OPTION);
+                    if (confirmDialog != JOptionPane.YES_OPTION) { //The ISSUE is here
+                        return;
+                    }
+                }
+
                 JDialog dialog = showLoading(f);
 
                 //Show loading while load
@@ -172,9 +181,9 @@ public class DashboardGUI {
 
         String msg;
         if(controller.saveJsonTo(path)){
-            msg = "All patients detail successfully saved!";
+            msg = "All patients detail saved successfully!";
         }else {
-            msg = "Fail to save file.";
+            msg = "Warning! Fail to save file.";
         }
         JOptionPane.showMessageDialog(f, msg, "Notice", JOptionPane.INFORMATION_MESSAGE);
 

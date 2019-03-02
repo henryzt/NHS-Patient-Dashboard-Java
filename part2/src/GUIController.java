@@ -36,4 +36,10 @@ public class GUIController {
         return model.saveJsonTo(path, getAllJson());
     }
 
+    //check if the patients csv is loaded correctly (if FIRST & LAST exists)
+    public boolean checkLoadedPatientName(){
+        Patient p = model.getPatientByIndex(0);
+        return (p.get("FIRST") ==null || p.get("LAST") ==null);
+    }
+
 }
