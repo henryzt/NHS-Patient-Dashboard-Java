@@ -20,7 +20,7 @@ public class Model {
     }
 
 
-    public String getPatient(Patient p){
+    public String getPatientJson(Patient p){
         return json.getSinglePatientJson(p);
     }
 

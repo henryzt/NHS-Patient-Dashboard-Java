@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class MainTest {
 
     public static void main(String[] args){
@@ -14,7 +12,7 @@ public class MainTest {
 
         model.readFile("patients100.csv");
         System.out.println(model.getAllPatients());
-        System.out.println(model.getPatient(model.getPatientByIndex(0)));
+        System.out.println(model.getPatientJson(model.getPatientByIndex(0)));
 
     }
 

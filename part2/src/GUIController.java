@@ -10,10 +10,20 @@ public class GUIController {
         model = new Model();
     }
 
-    public List<String> getPatientList(String filePath){
+    public void LoadPatients(String filePath){
         model.readFile(filePath);
-//        System.out.println(model.getNameArray()[0]);
+    }
+
+    public List<String> getPatientNames(){
         return model.getNameArray();
+    }
+
+    public String getPatientJson(int index){
+        return model.getPatientJson(model.getPatientByIndex(index));
+    }
+
+    public String getAllJson(){
+        return model.getAllPatients();
     }
 
 }
