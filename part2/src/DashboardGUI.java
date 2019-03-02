@@ -8,6 +8,8 @@ import static javax.swing.BorderFactory.createEmptyBorder;
 public class DashboardGUI {
     private JFrame f;
     private GUIController controller;
+    private DefaultListModel<String> listModel; //for list actions
+    private JTextArea details; //Text area
 
 
     DashboardGUI() {
@@ -43,7 +45,7 @@ public class DashboardGUI {
 
         pWest.setLayout(new BorderLayout());
 
-        DefaultListModel<String> listModel = new DefaultListModel<>();
+        listModel = new DefaultListModel<>();
         JList<String> list = new JList<>(listModel);
         JScrollPane spList = new JScrollPane();
         spList.setViewportView(list);
@@ -87,7 +89,7 @@ public class DashboardGUI {
 
         //---------------------Center
 
-        JTextArea details = new JTextArea("Load Patient File to Begin...");
+        details = new JTextArea("Load Patient File to Begin...");
         details.setWrapStyleWord(true);
         JScrollPane spText = new JScrollPane();
         spText.setViewportView(details);
@@ -110,41 +112,14 @@ public class DashboardGUI {
 
 
         f.add(panelMain);
-        f.setSize(900, 650);
+        f.setSize(950, 650);
+        f.setLocationRelativeTo(null);
         f.setVisible(true);
 
 
         //----------------------Actions
 
-        bReadCsv.addActionListener((ActionEvent e) -> {
-                String path = fileChooser(FileDialog.LOAD);
-                if(path != null){
-                    if(controller.LoadPatients(path)) {
-                        JDialog dialog = showLoading(f);
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                listModel.clear();
-                                listModel.addAll(controller.getPatientNames());
-                                details.setText(controller.getAllJson());
-                                dialog.dispose();
-                            }
-                        }).start();
-
-                        dialog.setVisible(true);
-
-
-
-                    }else{
-                        JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid.",
-                                "File Error",
-                                JOptionPane.ERROR_MESSAGE);
-
-                    }
-
-                }
-            });
+        bReadCsv.addActionListener((ActionEvent e) -> loadFromCSV());
 
 
         list.addListSelectionListener((ListSelectionEvent e) -> {
@@ -158,6 +133,35 @@ public class DashboardGUI {
 
     }
 
+    private void loadFromCSV(){
+        String path = fileChooser(FileDialog.LOAD);
+        if(path != null){
+            if(controller.LoadPatients(path)) {
+                JDialog dialog = showLoading(f);
+
+                //Show loading while load
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        listModel.clear();
+                        listModel.addAll(controller.getPatientNames());
+                        details.setText(controller.getAllJson());
+                        dialog.dispose();
+                    }
+                }).start();
+
+                dialog.setVisible(true);
+
+            }else{
+                JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid.",
+                        "File Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+    }
+
+
 
     private String fileChooser(int mode){
         FileDialog dialog = new FileDialog(f, "Select a File Path");
@@ -170,8 +174,9 @@ public class DashboardGUI {
         return dialog.getDirectory() + file;
     }
 
+
     private JDialog showLoading(JFrame f){
-        final JOptionPane optionPane = new JOptionPane("Loading...Please wait", JOptionPane.INFORMATION_MESSAGE,
+        final JOptionPane optionPane = new JOptionPane("Loading, please wait...", JOptionPane.INFORMATION_MESSAGE,
                 JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null); //create an empty loading dialog
         return optionPane.createDialog(f, "Notice");
 
