@@ -11,8 +11,11 @@ public class MainTest {
         Model model = new Model();
 
         model.readFromCSV("patients100.csv");
-        System.out.println(model.getAllPatients());
-        System.out.println(model.getPatientJson(model.getPatientByIndex(0)));
+//        System.out.println(model.getAllPatients());
+//        System.out.println(model.getPatientJson(model.getPatientByIndex(0)));
+
+        JSONFormatter json = new JSONFormatter();
+        json.getPatientFromJson(model.getAllPatients());
 
     }
 

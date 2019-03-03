@@ -60,7 +60,21 @@ public class JSONFormatter {
 
     }
 
+    public List<Patient> getPatientFromJson(String allPatientJson){
+        String[] patientJson = parseAllPatientJson(allPatientJson);
+        for(String json : patientJson){
+            System.out.println(json);
+        }
+        return null;
+    }
 
+    private String[] parseAllPatientJson(String allPatientJson){
+        allPatientJson = allPatientJson.replaceAll("\n",""); //delete curly bracket at both side
+        allPatientJson = allPatientJson.replaceAll("^ *\\{|} *$",""); //delete curly bracket at both side
+        String content = allPatientJson.split(" *: *")[1]; //get array content (second part)
+        content = content.replaceAll("^ *[|] *$",""); //delete square bracket for array
+        return content.split(",");
+    }
 
     private String[] parseOneStringEntry(String entry){
         Pattern p = Pattern.compile("\"([^:]*)\"");
@@ -75,8 +89,6 @@ public class JSONFormatter {
         return res;
     }
 
-//    public static void main(String[] args){
-//        new JSONFormatter().parseOneEntry("{\"patient\":\"adfwefwe{a\"fwefew\",}fwefewfew\"}");
-//    }
+
 
 }
