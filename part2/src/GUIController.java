@@ -1,4 +1,3 @@
-import java.util.Collection;
 import java.util.List;
 
 public class GUIController {
@@ -12,7 +11,7 @@ public class GUIController {
 
     public boolean LoadPatients(String filePath){
         try {
-            model.readFile(filePath);
+            model.readFromCSV(filePath);
             return true;
         }catch (Exception e){
             e.printStackTrace();

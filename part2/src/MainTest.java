@@ -10,7 +10,7 @@ public class MainTest {
 
         Model model = new Model();
 
-        model.readFile("patients100.csv");
+        model.readFromCSV("patients100.csv");
         System.out.println(model.getAllPatients());
         System.out.println(model.getPatientJson(model.getPatientByIndex(0)));
 

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JSONFormatter {
 
@@ -58,5 +60,23 @@ public class JSONFormatter {
 
     }
 
+
+
+    private String[] parseOneStringEntry(String entry){
+        Pattern p = Pattern.compile("\"([^:]*)\"");
+        Matcher m = p.matcher(entry);
+
+        String[] res = {"",""};
+        if(!m.find()){return null;}
+        res[0] = m.group(1);           //entry name
+        if(!m.find()){return null;}
+        res[1] = m.group(1);          //entry content
+
+        return res;
+    }
+
+//    public static void main(String[] args){
+//        new JSONFormatter().parseOneEntry("{\"patient\":\"adfwefwe{a\"fwefew\",}fwefewfew\"}");
+//    }
 
 }

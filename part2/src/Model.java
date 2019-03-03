@@ -13,7 +13,7 @@ public class Model {
         patients = new ArrayList<>();
     }
 
-    public void readFile(String path){
+    public void readFromCSV(String path){
         patients = csv.readCSV(path);
 
     }
