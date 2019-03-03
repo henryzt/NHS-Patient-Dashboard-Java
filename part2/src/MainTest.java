@@ -15,7 +15,7 @@ public class MainTest {
 //        System.out.println(model.getPatientJson(model.getPatientByIndex(0)));
 
         JSONFormatter json = new JSONFormatter();
-        json.getPatientFromJson(model.getAllPatients());
+        System.out.println(json.getPatientFromJson(model.getAllPatients()).get(0).get("LAST"));
 
     }
 

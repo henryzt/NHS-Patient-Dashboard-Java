@@ -62,18 +62,33 @@ public class JSONFormatter {
 
     public List<Patient> getPatientFromJson(String allPatientJson){
         String[] patientJson = parseAllPatientJson(allPatientJson);
-        for(String json : patientJson){
-            System.out.println(json);
+        List<Patient> patients = new ArrayList<>();
+        if(patientJson == null){
+            return null;
         }
-        return null;
+        for(String json : patientJson){
+            String[] details = json.split(" *, *");
+            Patient p = new Patient();
+            for(String detail : details){
+                String[] hashPair = parseOneStringEntry(detail);
+                if(hashPair == null){return null;}
+                p.addRecord(hashPair[0],hashPair[1]);
+            }
+            patients.add(p);
+        }
+        return patients;
     }
 
     private String[] parseAllPatientJson(String allPatientJson){
-        allPatientJson = allPatientJson.replaceAll("\n",""); //delete curly bracket at both side
-        allPatientJson = allPatientJson.replaceAll("^ *\\{|} *$",""); //delete curly bracket at both side
-        String content = allPatientJson.split(" *: *")[1]; //get array content (second part)
-        content = content.replaceAll("^ *[|] *$",""); //delete square bracket for array
-        return content.split(",");
+        allPatientJson = allPatientJson.replaceAll("\n","");
+        allPatientJson = allPatientJson.replaceAll("^\\{|}$",""); //replace all curly brackets?
+        Pattern p = Pattern.compile("\\[.*\\]"); //match json array
+        Matcher m = p.matcher(allPatientJson);
+        if(!m.find()){return null;}
+        String content = m.group();
+        content = content.replaceAll("^\\[|\\]$",""); //replace all square brackets
+
+        return content.split("} *, *\\{");
     }
 
     private String[] parseOneStringEntry(String entry){
