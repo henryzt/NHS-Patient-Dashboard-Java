@@ -119,8 +119,8 @@ public class DashboardGUI {
 
         //----------------------Actions
 
-        bReadCsv.addActionListener((ActionEvent e) -> loadFromCSV());
-
+        bReadCsv.addActionListener((ActionEvent e) -> loadFile(controller.FILE_CSV));
+        bReadJson.addActionListener((ActionEvent e) -> loadFile(controller.FILE_JSON));
         bSaveJson.addActionListener((ActionEvent e) -> saveTo());
 
 
@@ -135,41 +135,43 @@ public class DashboardGUI {
 
     }
 
-    private void loadFromCSV(){
+    private void loadFile(int fileType){
         String path = fileChooser(FileDialog.LOAD);
-        if(path != null){
-            if(controller.LoadPatients(path)) {
-                if(controller.checkLoadedPatientName()){
-                    int confirmDialog = JOptionPane.showConfirmDialog(null,
-                            "The file loaded doesn't seems to be a correct patient CSV file, \nthis might cause errors. Do you wish to proceed anyway?",
-                            "Warning", JOptionPane.YES_NO_OPTION);
-                    if (confirmDialog != JOptionPane.YES_OPTION) { //The ISSUE is here
-                        return;
-                    }
+        if(path == null) {
+            return;
+        }
+        if(controller.LoadPatients(path, fileType)) {
+            if(controller.checkLoadedPatientName()){
+                int confirmDialog = JOptionPane.showConfirmDialog(null,
+                        "The file loaded doesn't seems to be a correct patient file, \nthis might cause errors. Do you wish to proceed anyway?",
+                        "Warning", JOptionPane.YES_NO_OPTION);
+                if (confirmDialog != JOptionPane.YES_OPTION) {
+                    return;
                 }
-
-                JDialog dialog = showLoading(f);
-
-                //Show loading while load
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        listModel.clear();
-                        listModel.addAll(controller.getPatientNames());
-                        details.setText(controller.getAllJson());
-                        dialog.dispose();
-                    }
-                }).start();
-
-                dialog.setVisible(true);
-
-            }else{
-                JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid.",
-                        "File Error",
-                        JOptionPane.ERROR_MESSAGE);
             }
 
+            JDialog dialog = showLoading(f);
+
+            //Show loading while load
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    listModel.clear();
+                    listModel.addAll(controller.getPatientNames());
+                    details.setText(controller.getAllJson());
+                    dialog.dispose();
+                }
+            }).start();
+
+            dialog.setVisible(true);
+
+        }else{
+            JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid.",
+                    "File Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
+
+
     }
 
 

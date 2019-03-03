@@ -1,6 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +13,28 @@ public class Model {
 
     public void readFromCSV(String path){
         patients = csv.readCSV(path);
+    }
+
+    public boolean readFromJson(String path){
+        StringBuilder builder = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String currentLine;
+            while ((currentLine = reader.readLine()) != null) {
+                builder.append(currentLine);
+                builder.append('\n');
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        String content =  builder.toString();
+
+        List<Patient> p = json.getPatientFromJson(content);
+        if(p == null){
+            return false;
+        }
+        patients = p;
+        return true;
 
     }
 
@@ -42,7 +62,7 @@ public class Model {
     public List<String> getNameArray(){
         List<String> names = new ArrayList<>();
         for(Patient p : patients){
-            names.add(p.get("FIRST") + " " + p.get("LAST"));
+            names.add(getName(p));
         }
 
         return names;
