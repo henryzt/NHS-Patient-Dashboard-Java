@@ -109,6 +109,9 @@ public class Model {
                 results.add(p);
             }
         }
+        if(results.size() == 0){
+            return null;
+        }
         return results;
     }
 

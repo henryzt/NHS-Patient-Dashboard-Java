@@ -27,7 +27,7 @@ public class Patient {
 
     public boolean findRecord(String target){
         for(var m : entry.entrySet()){
-            if(target.equals(m.getValue())){
+            if(m.getValue().toLowerCase().contains(target.toLowerCase())){
                 return true;
             }
         }

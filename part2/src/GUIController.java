@@ -5,7 +5,7 @@ public class GUIController {
 
     private Model model;
     private List<String> patientNameList = null;
-    private List<Patient> searchResult = new ArrayList<>();
+    private List<Patient> searchResult = null;
     private String patientsJson = null;
 
     public final int FILE_CSV = 0;
@@ -33,6 +33,10 @@ public class GUIController {
     }
 
     public List<String> getPatientNames(){
+        //priority search result
+        if(searchResult != null){
+            return model.getNameArray(searchResult);
+        }
         if(patientNameList == null) {
             patientNameList = model.getNameArray();
         }
@@ -40,10 +44,18 @@ public class GUIController {
     }
 
     public String getPatientJson(int index){
+        //priority search result
+        if(searchResult != null){
+            return model.getPatientJson(model.getPatientByIndex(searchResult,index));
+        }
         return model.getPatientJson(model.getPatientByIndex(index));
     }
 
     public String getAllJson(){
+        //priority search result
+        if(searchResult != null){
+            return model.getAllPatientsJson(searchResult);
+        }
         if(patientsJson == null){
             patientsJson = model.getAllPatientsJson();
         }
@@ -69,12 +81,11 @@ public class GUIController {
         return true;
     }
 
-    public List<String> getSearchResultNames() {
-        if(searchResult != null) {
-            return model.getNameArray(searchResult);
-        }
-        return null;
+    public void clearSearch(){
+        searchResult = null;
     }
+
+
 
 
 

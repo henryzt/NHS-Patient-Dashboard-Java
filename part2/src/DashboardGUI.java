@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 import static javax.swing.BorderFactory.createEmptyBorder;
 
@@ -10,6 +12,7 @@ public class DashboardGUI {
     private GUIController controller;
     private DefaultListModel<String> listModel; //for list actions
     private JTextArea details; //Text area
+    private final String searchPlaceholder = "Search All...";
 
 
     DashboardGUI() {
@@ -70,9 +73,12 @@ public class DashboardGUI {
         JPanel bottomLeft = new JPanel();
         bottomLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
         JButton bSearch = new JButton("Search");
-        JTextField text = new JTextField("Search...",10);
+        JButton bClearSearch = new JButton("Clear Search");
+        JTextField text = new JTextField(searchPlaceholder,10);
         bottomLeft.add(text);
         bottomLeft.add(bSearch);
+        bottomLeft.add(bClearSearch);
+        bClearSearch.setVisible(false);
 
         JPanel bottomCenter = new JPanel();
         bottomCenter.add(new JLabel("Henry Zhang"));
@@ -125,14 +131,32 @@ public class DashboardGUI {
         bReadCsv.addActionListener((ActionEvent e) -> loadFile(controller.FILE_CSV));
         bReadJson.addActionListener((ActionEvent e) -> loadFile(controller.FILE_JSON));
         bSaveJson.addActionListener((ActionEvent e) -> saveTo());
-        bSearch.addActionListener((ActionEvent e) -> doSearch(text.getText()));
+        bSearch.addActionListener((ActionEvent e) -> {if (doSearch(text.getText())) { bClearSearch.setVisible(true);}});
+        bClearSearch.addActionListener((ActionEvent e) ->{
+            text.setText(searchPlaceholder);
+            bClearSearch.setVisible(false);
+            controller.clearSearch();
+            refreshList();
+        });
         bShowAll.addActionListener((ActionEvent e) -> {
             details.setText(controller.getAllJson());
             list.clearSelection();
             bShowAll.setVisible(false);
         });
-
-
+        text.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                if(text.getText().equals(searchPlaceholder)){
+                    text.setText("");
+                }
+            }
+            public void focusLost(FocusEvent e) {
+                if(text.getText().equals("")){
+                    text.setText(searchPlaceholder);
+                }
+            }
+        });
 
         list.addListSelectionListener((ListSelectionEvent e) -> {
                 if(list.getSelectedIndex() != -1) {
@@ -167,9 +191,7 @@ public class DashboardGUI {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    listModel.clear();
-                    listModel.addAll(controller.getPatientNames());
-                    details.setText(controller.getAllJson());
+                    refreshList();
                     dialog.dispose();
                 }
             }).start();
@@ -181,16 +203,29 @@ public class DashboardGUI {
                     "File Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-
-
     }
 
 
 
-    private void doSearch(String text){
+    private boolean doSearch(String text){
+        if(text.equals(searchPlaceholder)){
+            JOptionPane.showMessageDialog(f, "Please enter your search query. You can search for any data.", "Notice", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
 
+        if(!controller.searh(text)){
+            JOptionPane.showMessageDialog(f, "No result found for \"" + text + "\".", "Notice", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        refreshList();
+        return true;
     }
 
+    private void refreshList(){
+        listModel.clear();
+        listModel.addAll(controller.getPatientNames());
+        details.setText(controller.getAllJson());
+    }
 
     private void saveTo(){
         String path = fileChooser(FileDialog.SAVE);
