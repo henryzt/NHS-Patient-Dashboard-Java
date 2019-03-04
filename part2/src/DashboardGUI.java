@@ -26,6 +26,7 @@ public class DashboardGUI {
 
 
         //----------North
+        JButton bShowAll = new JButton("Display All Patient");
         JButton bReadCsv = new JButton("Load From CSV");
         JButton bReadJson = new JButton("Load From Json");
         JButton bSaveJson = new JButton("Save to Json");
@@ -34,10 +35,12 @@ public class DashboardGUI {
         pNorth.setLayout(new FlowLayout(FlowLayout.CENTER));
 //        pNorth.setBorder(BorderFactory.createEmptyBorder(5, 80, 5, 80));
 
+        pNorth.add(bShowAll);
         pNorth.add(bReadCsv);
         pNorth.add(bReadJson);
         pNorth.add(bSaveJson);
 
+        bShowAll.setVisible(false);
 //        pNorth.setPreferredSize(new Dimension(900, 50));
 
         //--------------------West
@@ -89,7 +92,7 @@ public class DashboardGUI {
 
         //---------------------Center
 
-        details = new JTextArea("Load Patient File to Begin...");
+        details = new JTextArea("Load Patient File to Begin");
         details.setWrapStyleWord(true);
         JScrollPane spText = new JScrollPane();
         spText.setViewportView(details);
@@ -122,11 +125,19 @@ public class DashboardGUI {
         bReadCsv.addActionListener((ActionEvent e) -> loadFile(controller.FILE_CSV));
         bReadJson.addActionListener((ActionEvent e) -> loadFile(controller.FILE_JSON));
         bSaveJson.addActionListener((ActionEvent e) -> saveTo());
+        bSearch.addActionListener((ActionEvent e) -> doSearch(text.getText()));
+        bShowAll.addActionListener((ActionEvent e) -> {
+            details.setText(controller.getAllJson());
+            list.clearSelection();
+            bShowAll.setVisible(false);
+        });
+
 
 
         list.addListSelectionListener((ListSelectionEvent e) -> {
                 if(list.getSelectedIndex() != -1) {
                     details.setText(controller.getPatientJson(list.getSelectedIndex()));
+                    bShowAll.setVisible(true);
                 }
             }
         );
@@ -166,11 +177,17 @@ public class DashboardGUI {
             dialog.setVisible(true);
 
         }else{
-            JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid.",
+            JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid, \nor whether the file type match the input.",
                     "File Error",
                     JOptionPane.ERROR_MESSAGE);
         }
 
+
+    }
+
+
+
+    private void doSearch(String text){
 
     }
 

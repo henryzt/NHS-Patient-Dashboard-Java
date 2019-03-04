@@ -38,8 +38,13 @@ public class Model {
 
     }
 
-    public String getAllPatients(){
+    public String getAllPatientsJson(){
         return json.getAllPatientJson(patients);
+    }
+
+    //for search results
+    public String getAllPatientsJson(List<Patient> list){
+        return json.getAllPatientJson(list);
     }
 
 
@@ -59,6 +64,11 @@ public class Model {
         return patients.get(i);
     }
 
+    //for search results
+    public Patient getPatientByIndex(List<Patient> list, int i){
+        return list.get(i);
+    }
+
     public List<String> getNameArray(){
         List<String> names = new ArrayList<>();
         for(Patient p : patients){
@@ -68,13 +78,14 @@ public class Model {
         return names;
     }
 
-    public String[] getIdArray(){
-        List<String> ids = new ArrayList<>();
-        for(Patient p : patients){
-            ids.add(p.get("ID"));
+    //for search results
+    public List<String> getNameArray(List<Patient> list){
+        List<String> names = new ArrayList<>();
+        for(Patient p : list){
+            names.add(getName(p));
         }
 
-        return ids.toArray(String[]::new);
+        return names;
     }
 
 
@@ -88,6 +99,17 @@ public class Model {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+    public List<Patient> search(String target){
+        List<Patient> results = new ArrayList<>();
+        for(Patient p : patients){
+            if(p.findRecord(target)){
+                results.add(p);
+            }
+        }
+        return results;
     }
 
 

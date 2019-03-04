@@ -25,6 +25,13 @@ public class Patient {
         return entry.keySet().toArray(new String[0]);
     }
 
-
+    public boolean findRecord(String target){
+        for(var m : entry.entrySet()){
+            if(target.equals(m.getValue())){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
