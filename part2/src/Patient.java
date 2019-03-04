@@ -1,12 +1,12 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Patient {
-    private HashMap<String,String> entry;
+    private LinkedHashMap<String,String> entry;
 
     Patient(){
-        entry = new HashMap<>();
+        entry = new LinkedHashMap<>();
     }
 
     public void addRecord(String field, String value){
