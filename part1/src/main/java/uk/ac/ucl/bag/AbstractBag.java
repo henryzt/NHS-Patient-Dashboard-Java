@@ -88,7 +88,7 @@ public abstract class AbstractBag<T extends Comparable> implements Bag<T>
       return result;
   }
 
-
+//TODO USE JSON
   public void saveBagToFile(String fileName) throws IOException {
     BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
     writer.write(this.toString());

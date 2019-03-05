@@ -80,6 +80,7 @@ public class JSONFormatter {
     }
 
     private String[] parseAllPatientJson(String allPatientJson){
+        //TODO get only patient array
         allPatientJson = allPatientJson.replaceAll("\n","");
         allPatientJson = allPatientJson.replaceAll("^\\{|}$",""); //replace all curly brackets?
         Pattern p = Pattern.compile("\\[.*\\]"); //match json array
