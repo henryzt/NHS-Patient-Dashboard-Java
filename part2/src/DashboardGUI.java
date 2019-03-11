@@ -4,12 +4,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static javax.swing.BorderFactory.createEmptyBorder;
 
 public class DashboardGUI {
     private JFrame f;
     private GUIController controller;
+    private List<String> statistics;
     private DefaultListModel<String> listModel; //for list actions
     private JTextArea details; //Text area
     private final String searchPlaceholder = "Search All...";
@@ -196,10 +200,13 @@ public class DashboardGUI {
                 }
             }).start();
 
+            statistics = controller.getStatistics();
+            showStatistics();
+
             dialog.setVisible(true);
 
         }else{
-            JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid, \nor whether the file type match the input.",
+            JOptionPane.showMessageDialog(f, "Fail to Load file, please check whether the file's content is valid, \nor whether the file type match your selection.",
                     "File Error",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -262,6 +269,18 @@ public class DashboardGUI {
 
     }
 
+    private void showStatistics(){
+        Timer timer = new Timer();
+        int index = 0;
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println(statistics.get(controller.getStatisticIndex()));
+            }
+        };
+
+        timer.schedule(task, 1000,3000);
+    }
 
 
     public static void main(String[] args) {

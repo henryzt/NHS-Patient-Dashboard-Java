@@ -7,6 +7,7 @@ public class GUIController {
     private List<String> patientNameList = null;
     private List<Patient> searchResult = null;
     private String patientsJson = null;
+    private int sIndex = 0;
 
     public final int FILE_CSV = 0;
     public final int FILE_JSON = 1;
@@ -86,6 +87,15 @@ public class GUIController {
     }
 
 
+    public List<String> getStatistics(){
+        sIndex = -1;
+        return new Statistics(model.getPatients()).getStatisticInfo();
+    }
+
+    public int getStatisticIndex(){
+        sIndex ++;
+        return sIndex;
+    }
 
 
 

@@ -116,5 +116,7 @@ public class Model {
     }
 
 
-
+    public List<Patient> getPatients() {
+        return patients;
+    }
 }
