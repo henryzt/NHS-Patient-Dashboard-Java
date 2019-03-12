@@ -1,13 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class GUIController {
 
     private Model model;
+    private Statistics statistics;
     private List<String> patientNameList = null;
     private List<Patient> searchResult = null;
     private String patientsJson = null;
     private int sIndex = 0;
+    private List<String> sInfo;
 
     public final int FILE_CSV = 0;
     public final int FILE_JSON = 1;
@@ -87,14 +90,41 @@ public class GUIController {
     }
 
 
-    public List<String> getStatistics(){
+    public void getStatistics(){
+        statistics = new Statistics(model.getPatients());
+        sInfo = statistics.getStatisticInfo();
         sIndex = -1;
-        return new Statistics(model.getPatients()).getStatisticInfo();
     }
 
-    public int getStatisticIndex(){
+    public String getNextStatistic(){
+        if(sInfo == null){
+            return "Load patient file to begin";
+        }
+
         sIndex ++;
-        return sIndex;
+        if(sIndex >= sInfo.size()){
+            sIndex = 0;
+        }
+        return sInfo.get(sIndex);
+    }
+
+    public void clearStatistics(){
+        sInfo = new ArrayList<>();
+        sInfo.add("Statistics not available");
+    }
+
+    public String getAllStats(){
+        if(sInfo == null){
+            return "Load patient file to begin";
+        }
+        StringBuilder builder = new StringBuilder();
+        builder.append("Statistics:\n");
+        for(String info : sInfo){
+            builder.append(info);
+            builder.append("\n");
+        }
+
+        return builder.toString();
     }
 
 

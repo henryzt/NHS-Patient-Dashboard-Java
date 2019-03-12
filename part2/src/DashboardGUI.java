@@ -1,10 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.util.List;
+import java.awt.event.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,11 +10,10 @@ import static javax.swing.BorderFactory.createEmptyBorder;
 public class DashboardGUI {
     private JFrame f;
     private GUIController controller;
-    private List<String> statistics;
     private DefaultListModel<String> listModel; //for list actions
     private JTextArea details; //Text area
     private final String searchPlaceholder = "Search All...";
-
+    private JLabel statsLabel;
 
     DashboardGUI() {
 
@@ -25,6 +21,7 @@ public class DashboardGUI {
 
         f = new JFrame(); //creating instance of JFrame
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setTitle("Patients Dashboard");
         JPanel panelMain = new JPanel();
         JPanel pWest = new JPanel();
         JPanel pNorth = new JPanel();
@@ -72,7 +69,7 @@ public class DashboardGUI {
 
 
         //---------------------South
-        pSouth.setLayout(new GridLayout(1, 3,20,20));
+        pSouth.setLayout(new GridLayout(1, 2,20,20));
 
         JPanel bottomLeft = new JPanel();
         bottomLeft.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -84,12 +81,16 @@ public class DashboardGUI {
         bottomLeft.add(bClearSearch);
         bClearSearch.setVisible(false);
 
-        JPanel bottomCenter = new JPanel();
-        bottomCenter.add(new JLabel("Henry Zhang"));
+//        JPanel bottomCenter = new JPanel();
+//        bottomCenter.add(new JLabel());
 
         JPanel bottomRight = new JPanel();
+        JButton bStats = new JButton("Stats");
         bottomRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        bottomRight.add(new JLabel("Henry Zhang"));
+        statsLabel = new JLabel();
+        statsLabel.setBorder(createEmptyBorder(5, 0, 5, 0));
+        bottomRight.add(statsLabel);
+        bottomRight.add(bStats);
 
         pSouth.add(bottomLeft);
 //        pSouth.add(bottomCenter);
@@ -147,6 +148,10 @@ public class DashboardGUI {
             list.clearSelection();
             bShowAll.setVisible(false);
         });
+        bStats.addActionListener((ActionEvent e)->{
+            JOptionPane.showMessageDialog(f, controller.getAllStats(), "Statistic", JOptionPane.INFORMATION_MESSAGE);
+        });
+
         text.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -171,7 +176,8 @@ public class DashboardGUI {
         );
 
 
-
+        //start statistic timer
+        showStatistics();
     }
 
     private void loadFile(int fileType){
@@ -180,6 +186,7 @@ public class DashboardGUI {
             return;
         }
         if(controller.LoadPatients(path, fileType)) {
+            statsLabel.setText("Please wait...");
             if(controller.checkLoadedPatientName()){
                 int confirmDialog = JOptionPane.showConfirmDialog(null,
                         "The file loaded doesn't seems to be a correct patient file, \nthis might cause errors. Do you wish to proceed anyway?",
@@ -187,6 +194,10 @@ public class DashboardGUI {
                 if (confirmDialog != JOptionPane.YES_OPTION) {
                     return;
                 }
+                controller.clearStatistics();
+            }else {
+                //valid patient file, get Statistics
+                controller.getStatistics();
             }
 
             JDialog dialog = showLoading(f);
@@ -200,8 +211,8 @@ public class DashboardGUI {
                 }
             }).start();
 
-            statistics = controller.getStatistics();
-            showStatistics();
+
+
 
             dialog.setVisible(true);
 
@@ -271,15 +282,14 @@ public class DashboardGUI {
 
     private void showStatistics(){
         Timer timer = new Timer();
-        int index = 0;
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                System.out.println(statistics.get(controller.getStatisticIndex()));
+                statsLabel.setText(controller.getNextStatistic());
             }
         };
 
-        timer.schedule(task, 1000,3000);
+        timer.schedule(task, 1000,4000);
     }
 
 
