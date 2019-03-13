@@ -18,7 +18,7 @@ public class ModelFactory
     if (model == null)
     {
       model = new Model();
-      model.readFromCSV("patients/patients100.csv");
+      model.readFromCSV("patients/patients100000.csv");
     }
     return model;
   }
