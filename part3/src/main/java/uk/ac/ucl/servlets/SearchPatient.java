@@ -16,10 +16,14 @@ import javax.servlet.http.*;
 public class SearchPatient extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
-        List<Patient> searchResult = model.search(request.getParameter("searchstring"));
+        String para = request.getParameter("search_string");
+        List<Patient> searchResult = model.search(para);
+        request.setAttribute("search_para", para);
         request.setAttribute("result", searchResult);
-        ServletContext context = getServletContext(); RequestDispatcher dispatch =
-                context.getRequestDispatcher("/search.jsp"); dispatch.forward(request, response);
+
+        ServletContext context = getServletContext();
+        RequestDispatcher dispatch = context.getRequestDispatcher("/search.jsp");
+        dispatch.forward(request, response);
     }
 }
 

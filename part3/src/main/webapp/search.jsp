@@ -8,7 +8,7 @@
 --%>
 <html>
 <head>
-
+    <jsp:include page="/meta.jsp"/>
     <title>Patient Data App</title>
 </head>
 <body>
@@ -19,7 +19,8 @@
     <h1>Search Result</h1>
     <%
         List<Patient> patients = (List<Patient>) request.getAttribute("result");
-        if (patients.size() !=0)
+
+        if (patients != null && patients.size() !=0)
         {
     %>
     <ul>

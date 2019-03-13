@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+  <jsp:include page="/meta.jsp"/>
   <title>Patient List</title>
 </head>
 <body>
@@ -12,8 +13,8 @@
   <div class="main">
     <h1>Search</h1>
     <form method="POST" action="/search.html">
-      <input type="text" name="searchstring"
-             placeholder="Enter search keyword here"/>
+      <input type="text" name="search_string"
+             placeholder="Search for anything..."/>
       <input type="submit" value="Search"/>
     </form>
   </div>

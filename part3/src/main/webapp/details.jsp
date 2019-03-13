@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <jsp:include page="/meta.jsp"/>
     <title>Patient Detail</title>
 </head>
 <body>
