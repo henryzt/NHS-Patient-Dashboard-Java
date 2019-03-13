@@ -1,6 +1,7 @@
 package uk.ac.ucl.servlets;
 
 import uk.ac.ucl.model.Model;
+import uk.ac.ucl.model.ModelFactory;
 import uk.ac.ucl.model.Patient;
 
 import java.io.*;
@@ -17,8 +18,7 @@ public class PatientList extends HttpServlet
     throws IOException, ServletException
   {
     // Code to use the model to process something would go here.
-    Model model = new Model();
-    model.readFromCSV("patients/patients1000.csv");
+    Model model = ModelFactory.getModel();
     List<Patient> patients = model.getPatients();
     request.setAttribute("patients", patients);
 
