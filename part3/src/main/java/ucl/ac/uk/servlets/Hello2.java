@@ -5,7 +5,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/hello2.html")
+@WebServlet("/patient.html")
 public class Hello2 extends HttpServlet
 {
   @Override
@@ -16,7 +16,7 @@ public class Hello2 extends HttpServlet
 
     // Then forward to JSP.
     ServletContext context = getServletContext();
-    RequestDispatcher dispatch = context.getRequestDispatcher("/sayHello.jsp");
+    RequestDispatcher dispatch = context.getRequestDispatcher("/patientList.jsp");
     dispatch.forward(request, response);
   }
 }
