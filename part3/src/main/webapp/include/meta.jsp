@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/styles.css"/>
+<link rel="stylesheet" type="text/css" href="/include/styles.css"/>
 
 <%--material design--%>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

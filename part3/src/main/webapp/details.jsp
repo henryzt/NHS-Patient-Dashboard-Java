@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <jsp:include page="/meta.jsp"/>
+    <jsp:include page="/include/meta.jsp"/>
     <title>Patient Detail</title>
 </head>
 <body>
-    <jsp:include page="/header.jsp"/>
+    <jsp:include page="/include/header.jsp"/>
 
     <div class="main">
 
@@ -27,6 +27,6 @@
             <% } %>
         </ul>
     </div>
-    <jsp:include page="/footer.jsp"/>
+    <jsp:include page="/include/footer.jsp"/>
 </body>
 </html>

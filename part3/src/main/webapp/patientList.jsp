@@ -4,23 +4,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <jsp:include page="/meta.jsp"/>
+  <jsp:include page="/include/meta.jsp"/>
   <title>Patient List</title>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
+<jsp:include page="/include/header.jsp"/>
 
-  <div class="main">
-    <h1>Search</h1>
-    <form method="POST" action="/search.html">
-      <input type="text" name="search_string"
-             placeholder="Search for anything..."/>
-      <input type="submit" value="Search"/>
-    </form>
-  </div>
+
 
   <div class="main">
 
+    <jsp:include page="/search-bar.jsp"/>
     <h2>Patients:</h2>
       <ul>
       <%
@@ -33,6 +27,6 @@
       <% } %>
     </ul>
   </div>
-  <jsp:include page="/footer.jsp"/>
+  <jsp:include page="/include/footer.jsp"/>
 </body>
 </html>

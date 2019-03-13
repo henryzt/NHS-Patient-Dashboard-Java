@@ -8,14 +8,14 @@
 --%>
 <html>
 <head>
-    <jsp:include page="/meta.jsp"/>
+    <jsp:include page="/include/meta.jsp"/>
     <title>Patient Data App</title>
 </head>
 <body>
-<jsp:include page="/header.jsp"/>
+<jsp:include page="/include/header.jsp"/>
 
 <div class="main">
-
+    <jsp:include page="/search-bar.jsp"/>
     <h1>Search Result</h1>
     <%
         List<Patient> patients = (List<Patient>) request.getAttribute("result");
@@ -36,6 +36,6 @@
     </ul>
 </div>
 
-<jsp:include page="/footer.jsp"/>
+<jsp:include page="/include/footer.jsp"/>
 </body>
 </html>

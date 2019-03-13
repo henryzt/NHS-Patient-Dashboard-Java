@@ -3,7 +3,7 @@
 <html lang="en">
 
     <head>
-        <jsp:include page="/meta.jsp"/>
+        <jsp:include page="/include/meta.jsp"/>
         <title>Patient Manager</title>
 
         <style>
@@ -44,6 +44,6 @@
     <br><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='patients.html';" style="width:200px;" >Enter Dashboard</button>
     <br><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" onclick="location.href='search.html';" style="width:200px;" >Quick search</button>
     </div>
-    <jsp:include page="/footer.jsp"/>
+    <jsp:include page="/include/footer.jsp"/>
 </body>
 </html>
