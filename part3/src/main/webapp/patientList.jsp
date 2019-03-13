@@ -11,7 +11,7 @@
 
   <div class="main">
     <h1>Search</h1>
-    <form method="POST" action="/runsearch.html">
+    <form method="POST" action="/search.html">
       <input type="text" name="searchstring"
              placeholder="Enter search keyword here"/>
       <input type="submit" value="Search"/>
@@ -27,7 +27,7 @@
         List<Patient> patients = (List<Patient>) request.getAttribute("patients");
         for (Patient patient : patients)
       {
-        String href = "viewPatientInfo.html?id=" + patient.get("ID"); %>
+        String href = "patient-detail.html?id=" + patient.get("ID"); %>
       <li><a href="<%=href%>"><%=patient.get("FIRST")%></a></li>
       <% } %>
     </ul>

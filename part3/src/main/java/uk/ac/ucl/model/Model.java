@@ -120,4 +120,8 @@ public class Model {
     public List<Patient> getPatients() {
         return patients;
     }
+
+    public Patient getPatientById(String id){
+        return search(id).get(0);
+    }
 }

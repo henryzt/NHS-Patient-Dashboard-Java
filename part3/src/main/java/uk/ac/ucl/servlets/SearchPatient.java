@@ -12,7 +12,7 @@ import javax.servlet.http.*;
 
 
 
-@WebServlet("/runsearch.html")
+@WebServlet("/search.html")
 public class SearchPatient extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Model model = ModelFactory.getModel();
