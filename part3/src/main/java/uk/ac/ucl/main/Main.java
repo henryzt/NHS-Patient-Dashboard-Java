@@ -1,4 +1,4 @@
-package ucl.ac.uk.main;
+package uk.ac.ucl.main;
 
 import java.io.File;
 import org.apache.catalina.WebResourceRoot;

@@ -1,3 +1,5 @@
+<%@ page import="uk.ac.ucl.model.Patient" %>
+<%@ page import="java.util.List" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -5,10 +7,18 @@
   <title>Patient List</title>
 </head>
 <body>
-  <h1></h1>
-  <h1>More JSP</h1> <ul>
-    <li>Current time: <%= new java.util.Date() %></li> <li>Server: <%= application.getServerInfo() %></li> <li>Session ID: <%= session.getId() %></li> <li>Path: <%= request.getPathInfo() %></li>
-  </ul>
+<div class="main">
+  <h2>Patients:</h2> <ul>
+  <%
+
+    List<Patient> patients = (List<Patient>) request.getAttribute("patients");
+    for (Patient patient : patients)
+  {
+    String href = "viewPatientInfo.html?id=" + patient.get("ID"); %>
+  <li><a href="<%=href%>"><%=patient%></a></li>
+  <% } %>
+</ul>
+</div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-package ucl.ac.uk.servlets;
+package uk.ac.ucl.servlets;
 
 import java.io.*;
 import javax.servlet.*;
