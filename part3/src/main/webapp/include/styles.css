@@ -1,9 +1,12 @@
 body{
-  padding:30px;
   background: #fdfdfd;
 }
 
-.clearBoth {
-  clear: both;
+body{
+  padding:30px;
 }
+
+/*.clearBoth {*/
+  /*clear: both;*/
+/*}*/
 
