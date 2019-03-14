@@ -16,7 +16,7 @@
 
 <div class="main">
     <jsp:include page="/search-bar.jsp"/>
-    <h1>Search Result</h1>
+    <h3>Search Result</h3>
     <%
         List<Patient> patients = (List<Patient>) request.getAttribute("result");
 

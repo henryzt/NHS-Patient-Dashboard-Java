@@ -16,7 +16,7 @@
 
     <div class="main">
 
-        <h2>View Patient Detail:</h2>
+        <h3>Patient Detail</h3>
         <ul>
             <%
 

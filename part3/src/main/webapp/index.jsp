@@ -7,19 +7,6 @@
         <title>Patient Manager</title>
 
         <style>
-            body{
-                text-align:center;
-                background:#f9f9f9;
-            }
-            .content{
-                background:white;
-                width:40%;
-                padding:60px;
-                margin-left:auto;
-                margin-right:auto;
-                margin-top:200px;
-            }
-
             .mdl-button{
                 margin-top:20px;
             }

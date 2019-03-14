@@ -2,11 +2,31 @@ body{
   background: #fdfdfd;
 }
 
-body{
-  padding:30px;
+body {
+  margin:0;
+  padding:0;
 }
 
 /*.clearBoth {*/
   /*clear: both;*/
 /*}*/
 
+body{
+  text-align:center;
+  background:#f9f9f9;
+}
+.content{
+  background:white;
+  width:40%;
+  padding:60px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:200px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
