@@ -17,15 +17,24 @@
     <div class="main">
 
         <h3>Patient Detail</h3>
-        <ul>
-            <%
 
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp center" >
+            <tbody style="width: 100%;">
+            <%
                 Patient patient = (Patient) request.getAttribute("patient");
                 for (String field : patient.getFields())
                 {%>
-                    <li><b><%=field%>:  </b> <%=patient.get(field)%></li>
+                    <tr style="width: 100%;">
+                        <td class="mdl-data-table__cell--non-numeric" style="width: 50%;"><b><%=field%></b></td>
+                        <td class="mdl-data-table__cell--non-numeric" style="width: 50%;"><%=patient.get(field)%></td>
+                    </tr>
             <% } %>
-        </ul>
+
+            </tbody>
+        </table>
+
+
+
     </div>
     <jsp:include page="/include/footer.jsp"/>
 </body>
