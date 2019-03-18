@@ -19,7 +19,7 @@ public class SearchPatient extends HttpServlet {
         String para = request.getParameter("search_string");
         List<Patient> searchResult = model.search(para);
         request.setAttribute("search_para", para);
-        request.setAttribute("result", searchResult);
+        request.setAttribute("list", searchResult);
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/search.jsp");

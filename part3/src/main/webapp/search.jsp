@@ -16,24 +16,20 @@
 
 <div class="main">
     <jsp:include page="/search-bar.jsp"/>
-    <h3>Search Result</h3>
+    <h3>Search Result for '<%=request.getAttribute("search_para")%>'</h3>
     <%
-        List<Patient> patients = (List<Patient>) request.getAttribute("result");
+        List<Patient> patients = (List<Patient>) request.getAttribute("list");
 
         if (patients != null && patients.size() !=0)
         {
     %>
-    <ul>
-        <%
-            for (Patient patient : patients){
-        %>
-        <li><%=patient.get("FIRST")%></li>
-        <% }
+        <jsp:include page="/patient-list.jsp"/>
+    <%
         } else
         {%>
         <p>Nothing found</p>
         <%}%>
-    </ul>
+
 </div>
 
 <jsp:include page="/include/footer.jsp"/>

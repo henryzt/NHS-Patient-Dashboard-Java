@@ -7,7 +7,6 @@
 --%>
 <div class="main">
     <div class="mdl-shadow--2dp  content"  style="margin-top:50px;margin-bottom: 50px;  padding:30px;">
-        <h3>Search</h3>
         <form method="POST" action="/search.html">
             <div>
                 <div class="mdl-textfield mdl-js-textfield">
