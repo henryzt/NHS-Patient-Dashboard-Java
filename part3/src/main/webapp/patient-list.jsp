@@ -18,7 +18,7 @@
             <th class="mdl-data-table__cell--non-numeric">Gender</th>
             <th class="mdl-data-table__cell--non-numeric">Birthday</th>
             <th class="mdl-data-table__cell--non-numeric">Race</th>
-            <th class="mdl-data-table__cell--non-numeric">Detail</th>
+            <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Detail</th>
         </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
             <td class="mdl-data-table__cell--non-numeric"><%=patient.get("GENDER")%></td>
             <td class="mdl-data-table__cell--non-numeric"><%=patient.get("BIRTHDATE")%></td>
             <td class="mdl-data-table__cell--non-numeric"><%=patient.get("RACE")%></td>
-            <td class="mdl-data-table__cell--non-numeric"><a href="<%=href%>">Details</a></td>
+            <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button mdl-js-button mdl-button--accent" style="padding: 0;" href="<%=href%>">View</a></td>
         </tr>
         <% } %>
         </tbody>

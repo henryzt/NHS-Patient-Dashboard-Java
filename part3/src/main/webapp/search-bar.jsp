@@ -6,12 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <div class="main">
-    <div class="mdl-shadow--2dp  content"  style="margin-top:50px;margin-bottom: 50px;  padding:30px;">
+    <div class="mdl-shadow--2dp  content"  style="margin-top:0px;margin-bottom: 50px;  padding:30px;">
         <form method="POST" action="/search.html">
             <div>
+
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input"  type="text" name="search_string"
-                       placeholder="Search for name, dates, address..."/>
+                    <input class="mdl-textfield__input" type="text" id="search" name="search_string"/>
+                    <label class="mdl-textfield__label" for="search">Search for name, dates, address...</label>
                 </div>
                 <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                        type="submit" value="Search"/>
