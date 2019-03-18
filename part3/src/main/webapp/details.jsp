@@ -18,10 +18,18 @@
 
         <h3>Patient Detail</h3>
     <div class="center">
+        <%
+            Patient patient = (Patient) request.getAttribute("patient");
+            if(patient == null){%>
+                <p>Patient not found</p>
+            <%
+            }else{
+            %>
+
+
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp " style="width: 100%">
             <tbody style="width: 100%;">
             <%
-                Patient patient = (Patient) request.getAttribute("patient");
                 for (String field : patient.getFields())
                 {%>
                     <tr>
@@ -32,6 +40,7 @@
 
             </tbody>
         </table>
+        <% } %>
     </div>
 
 

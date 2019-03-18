@@ -122,6 +122,11 @@ public class Model {
     }
 
     public Patient getPatientById(String id){
-        return search(id).get(0);
+        List<Patient> p = search(id);
+        if(p == null){
+            return null;
+        }
+
+        return p.get(0);
     }
 }

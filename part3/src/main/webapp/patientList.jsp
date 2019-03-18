@@ -17,7 +17,9 @@
     <jsp:include page="/search-bar.jsp"/>
 
       <h3>Patients</h3>
+
       <jsp:include page="/patient-list.jsp"/>
+      <jsp:include page="/include/pagination.jsp"/>
 
   <jsp:include page="/include/footer.jsp"/>
 </body>

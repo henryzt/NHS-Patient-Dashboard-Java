@@ -48,7 +48,7 @@ table{
 .layer{
   width: inherit;
   height: inherit;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   display: flex;
   flex-direction: row;
 
@@ -56,7 +56,7 @@ table{
 
 .header-content{
   margin: 0;
-  padding: 50px 50px;
+  padding: 20px 50px;
   text-shadow: 0 0 20px deeppink;
 }
 
@@ -74,4 +74,30 @@ table{
 
 .nav:hover{
     opacity: 0.7;
+}
+
+/*ref https://www.w3schools.com/css/css3_pagination.asp#*/
+.pagination {
+  display: inline-block;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: deeppink;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 3px 9px rgba(0,0,0,0.3);
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
 }
