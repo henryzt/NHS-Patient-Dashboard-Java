@@ -18,9 +18,20 @@ public class PatientList extends HttpServlet
     throws IOException, ServletException
   {
     // Code to use the model to process something would go here.
+    String pagePara = request.getParameter("page");
+    if(pagePara == null || pagePara.equals("")){
+        pagePara = "1";
+    }
+    int page = Integer.parseInt(pagePara);
+    int patientPerPage = 30;
+
     Model model = ModelFactory.getModel();
     List<Patient> patients = model.getPatients();
-    request.setAttribute("list", patients);
+    List<Patient> currentPagePatients = patients.subList((page-1)*patientPerPage, (page)*patientPerPage);
+    request.setAttribute("list", currentPagePatients);
+    request.setAttribute("pageCurrent", page);
+    request.setAttribute("pageTotal", patients.size()/patientPerPage);
+
 
     // Then forward to JSP.
     ServletContext context = getServletContext();
