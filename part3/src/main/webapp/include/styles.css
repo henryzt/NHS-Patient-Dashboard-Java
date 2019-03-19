@@ -101,3 +101,7 @@ table{
   background-color: #ddd;
   border-radius: 5px;
 }
+
+.mdl-tabs__tab{
+  width: 50%;
+}

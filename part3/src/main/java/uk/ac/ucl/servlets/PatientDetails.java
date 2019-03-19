@@ -16,9 +16,7 @@ import java.util.List;
 
 @WebServlet("/patient-detail.html")
 public class PatientDetails extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException
-    {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // Code to use the model to process something would go here.
         Model model = ModelFactory.getModel();
         Patient patient = model.getPatientById(request.getParameter("id"));

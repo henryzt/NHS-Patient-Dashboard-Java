@@ -16,6 +16,8 @@
 
 <div class="main">
     <jsp:include page="/search-bar.jsp"/>
+    <% if(!(boolean)request.getAttribute("get")){%>
+
     <h3>Search Result for '<%=request.getAttribute("search_para")%>'</h3>
     <%
         List<Patient> patients = (List<Patient>) request.getAttribute("list");
@@ -31,6 +33,8 @@
         <%}%>
 
 </div>
+
+<%}%>
 
 <jsp:include page="/include/footer.jsp"/>
 </body>
