@@ -1,11 +1,6 @@
 <%@ page import="uk.ac.ucl.model.Patient" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: henry
-  Date: 2019-03-13
-  Time: 15:59
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
+
 <html>
 <head>
     <jsp:include page="/include/meta.jsp"/>

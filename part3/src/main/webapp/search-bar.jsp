@@ -1,20 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: henry
-  Date: 2019-03-13
-  Time: 21:28
-  To change this template use File | Settings | File Templates.
---%>
+<%
+    //if search bar is included from search page, and no search result is displayed (by get request), activate advanced search by default
+    boolean activeAdvancedSearch = request.getRequestURI().equals("/search.jsp") && (boolean)request.getAttribute("get");
+%>
 <div class="main">
     <div class="mdl-shadow--2dp  content"  style="margin-top:0; margin-bottom: 50px; padding: 0 ">
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
             <div class="mdl-tabs__tab-bar" >
-                <a href="#basic-search" class="mdl-tabs__tab is-active">Basic Search</a>
-                <a href="#advanced-search"class="mdl-tabs__tab">Advanced Search</a>
+                <a href="#basic-search" class="mdl-tabs__tab <%=activeAdvancedSearch ? "" : "is-active" %>">Basic Search</a>
+                <a href="#advanced-search" class="mdl-tabs__tab <%=activeAdvancedSearch ? "is-active" : "" %>">Advanced Search</a>
             </div>
 
             <%--Basic search tab--%>
-            <div class="mdl-tabs__panel is-active" id="basic-search" style="padding:30px;">
+            <div class="mdl-tabs__panel <%=activeAdvancedSearch ? "" : "is-active" %>" id="basic-search" style="padding:30px;">
                 <form method="POST" action="/search.html">
                     <div>
                         <div class="mdl-textfield mdl-js-textfield">
@@ -28,18 +25,18 @@
             </div>
 
             <%--Advanced Search tab--%>
-            <div class="mdl-tabs__panel" id="advanced-search" style="padding:30px;">
-                <form method="POST" action="/search.html">
+            <div class="mdl-tabs__panel <%=activeAdvancedSearch ? "is-active" : "" %>" id="advanced-search" style="padding:30px;">
+                <form method="POST" action="/advanced-search.html">
                     <table style="width: 100%">
                         <tr>
                             <td><b>Age Range</b></td>
                             <td style="width: 70%;">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 30%;">
-                                    <input class="mdl-textfield__input" maxlength="3" type="text" pattern="-?[0-9]*(\.[0-9]+)?"  id="min" name="search_string"/>
+                                    <input class="mdl-textfield__input" maxlength="3" type="text" pattern="-?[0-9]*(\.[0-9]+)?"  id="min" name="age_min"/>
                                     <label class="mdl-textfield__label" for="search">Minimum</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 30%;">
-                                    <input class="mdl-textfield__input" maxlength="3" type="text" pattern="-?[0-9]*(\.[0-9]+)?"  id="max" name="search_string"/>
+                                    <input class="mdl-textfield__input" maxlength="3" type="text" pattern="-?[0-9]*(\.[0-9]+)?"  id="max" name="age_max"/>
                                     <label class="mdl-textfield__label" for="search">Maximum</label>
                                 </div>
                             </td>
@@ -70,7 +67,7 @@
                             <td><b>City</b></td>
                             <td style="width: 70%;">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 40%;">
-                                    <input class="mdl-textfield__input" type="text" id="city" name="search_string"/>
+                                    <input class="mdl-textfield__input" type="text" id="city" name="city"/>
                                     <label class="mdl-textfield__label" for="search">City</label>
                                 </div>
                             </td>
@@ -90,7 +87,7 @@
                             <td><b>Initial</b></td>
                             <td style="width: 70%;">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 40%;">
-                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="initial" name="search_string"/>
+                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="initial" name="initial"/>
                                     <label class="mdl-textfield__label" for="search">Name start with</label>
                                 </div>
                             </td>
