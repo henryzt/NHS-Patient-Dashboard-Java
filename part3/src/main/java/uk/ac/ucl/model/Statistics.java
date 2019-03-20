@@ -17,13 +17,12 @@ public class Statistics {
         for(Patient p : patients){
 
             int current = getYear(p, "BIRTHDATE");
-            int currentAge;
-            if(!p.get("DEATHDATE").equals("")){
-                currentAge = getYear(p, "DEATHDATE") - current;
+            int currentAge = getAge(p, current);
+
+            if(!p.get("DEATHDATE").equals("")) {
                 deceasedCount++;
-            }else {
-                currentAge = Calendar.getInstance().get(Calendar.YEAR) - current;
             }
+
             ageSum += currentAge;
             age.add(currentAge);
             born.add(current);
@@ -46,6 +45,18 @@ public class Statistics {
         comAge = getMostCommon(age);
         comBorn = getMostCommon(born);
 
+    }
+
+    public int getAge(Patient p){
+        return getAge(p, getYear(p, "BIRTHDATE"));
+    }
+
+    private int getAge(Patient p, int birthyear){
+        if(!p.get("DEATHDATE").equals("")){
+            return getYear(p, "DEATHDATE") - birthyear;
+        }else {
+            return Calendar.getInstance().get(Calendar.YEAR) - birthyear;
+        }
     }
 
 

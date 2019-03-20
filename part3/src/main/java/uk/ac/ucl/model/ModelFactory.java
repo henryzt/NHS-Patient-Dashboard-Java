@@ -12,14 +12,22 @@ import java.io.IOException;
 public class ModelFactory
 {
   private static Model model;
+  private static Statistics statistics;
 
-  public static Model getModel() throws IOException
-  {
-    if (model == null)
-    {
+  public static Model getModel() {
+    if (model == null) {
       model = new Model();
       model.readFromCSV("patients/patients10000.csv");
+      statistics = new Statistics(model.getPatients());
     }
     return model;
   }
+
+  public static int getPatientAge(Patient p) {
+    if (model != null) {
+      return statistics.getAge(p);
+    }
+    return -1;
+  }
+
 }
