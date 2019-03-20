@@ -38,7 +38,7 @@ table{
 }
 
 .header{
-  background: url("bg3.jpg") center center;
+  background: url("bg4.jpg") center center;
   background-size: cover;
   text-align: left;
   margin-bottom: 90px;
@@ -48,7 +48,7 @@ table{
 .layer{
   width: inherit;
   height: inherit;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.4);
   display: flex;
   flex-direction: row;
 
@@ -104,4 +104,12 @@ table{
 
 .mdl-tabs__tab{
   width: 50%;
+}
+
+.mdl-radio{
+  padding-right: 15px;
+}
+
+td{
+  padding-bottom: 15px;
 }
