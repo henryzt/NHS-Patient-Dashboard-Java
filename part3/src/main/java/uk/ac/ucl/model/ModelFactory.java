@@ -54,11 +54,4 @@ public class ModelFactory {
       request.setAttribute("pageTotal", (patients.size() % patientPerPage == 0) ? (patients.size() / patientPerPage) : (patients.size() / patientPerPage +1));
     }
 
-//    public static void setSearchResultCache(List<Patient> patients){
-//        searchResultCache = patients;
-//    }
-//
-//    public static List<Patient> getSearchResultCache(){
-//       return searchResultCache;
-//    }
 }

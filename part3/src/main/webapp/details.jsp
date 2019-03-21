@@ -12,7 +12,7 @@
         <div class="center">
             <div>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                        type="submit" onClick="javascript:history.go(-1)" style="float:left;width: 10%">Back</button>
+                        type="submit" onClick="javascript:history.go(-1)" style="float:left;width: 10%"><i class="material-icons">chevron_left</i>Back</button>
                 <h3 style="width: 90%" >Patient Detail</h3>
             </div>
             <%

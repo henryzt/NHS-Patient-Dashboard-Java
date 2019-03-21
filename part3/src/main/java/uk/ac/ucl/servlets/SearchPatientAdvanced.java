@@ -76,8 +76,7 @@ public class SearchPatientAdvanced extends HttpServlet {
         request.setAttribute("search_para", para);
         request.setAttribute("get", false);
         request.setAttribute("list", results);
-//        ModelFactory.setSearchResultCache(results);
-//        ModelFactory.pageDivider(request,results);
+
 
         forward(request, response);
     }

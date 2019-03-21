@@ -13,35 +13,28 @@
         <div class="main">
             <jsp:include page="/component/search-bar.jsp"/>
             <% if(!(boolean)request.getAttribute("get")){
-            String para = (String) request.getAttribute("search_para");
-            if(request.getParameter("page") == null){
-                session.setAttribute("list", request.getAttribute("list"));
-            }
-            ModelFactory.pageDivider(request,(List<Patient>) session.getAttribute("list"));
-            %>
-
-            <h3>Search Result<%=(para != null && !para.equals("")) ? " for '" + request.getAttribute("search_para") + "'" : ""%></h3>
-            <%
-                List<Patient> patients = (List<Patient>) request.getAttribute("list");
-                int size = patients != null ? patients.size() : 0;
-                boolean showAll = request.getParameter("showall")!=null && request.getParameter("showall").equals("true");
-                boolean displayPartialResult = !showAll && size > 1000;
-                if(displayPartialResult){
-                    request.setAttribute("list",patients.subList(0,1000));
+                //this page is called using post instead of get, thus contain search results
+                if(request.getParameter("page") == null){
+                    //user searched instead of using pagination, update session info
+                    session.setAttribute("list", request.getAttribute("list"));
+                    session.setAttribute("para",request.getAttribute("search_para"));
                 }
-
-                if (size !=0) {
-                    %>
+                List<Patient> patients = (List<Patient>) session.getAttribute("list");
+                if (patients != null) {
+                    String para = (String) session.getAttribute("para");
+                    ModelFactory.pageDivider(request, patients);
+                    //divide pages according to page parameter
+            %>
+                    <h3>Search Result<%=(para != null && !para.equals("")) ? " for '" + request.getAttribute("search_para") + "'" : ""%></h3>
                     <jsp:include page="/component/patient-list.jsp"/>
-                    <%
-                    if(displayPartialResult){%>
-                    <p style="padding: 30px">Showing first 1000 results, as showing all results might crash the browser. Try to narrow the search query.</p>
-                    <%}
 
-                } else {%>
-                <p>Nothing is found matching your criteria</p>
-                <%}%>
-            <%}%>
+            <%
+                } else {
+            %>
+                    <h4>Sorry, nothing is found matching your criteria.</h4>
+            <%
+                }
+            }%>
         </div>
 
         <jsp:include page="/include/footer.jsp"/>

@@ -15,13 +15,7 @@ import javax.servlet.http.*;
 @WebServlet("/search.html")
 public class SearchPatient extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        if(request.getParameter("page")!=null && ModelFactory.getSearchResultCache() != null){
-//            ModelFactory.pageDivider(request,ModelFactory.getSearchResultCache());
-//            request.setAttribute("get", false);
-//        }else {
-            request.setAttribute("get", request.getParameter("page") == null);
-//        }
-
+        request.setAttribute("get", request.getParameter("page") == null);
         forward(request, response);
     }
 
@@ -38,9 +32,6 @@ public class SearchPatient extends HttpServlet {
         request.setAttribute("search_para", para);
         request.setAttribute("list", searchResult);
 
-
-//        ModelFactory.setSearchResultCache(searchResult);
-//        ModelFactory.pageDivider(request,searchResult);
 
         forward(request, response);
     }

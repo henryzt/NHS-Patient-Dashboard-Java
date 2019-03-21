@@ -3,7 +3,7 @@
     boolean activeAdvancedSearch = request.getRequestURI().equals("/search.jsp") && (boolean)request.getAttribute("get");
 %>
 <div class="main">
-    <div class="mdl-shadow--2dp  content"  style="margin-top:0; margin-bottom: 50px; padding: 0 ">
+    <div class="mdl-shadow--2dp content"  style="transition: height 1s;margin-top:0; margin-bottom: 50px; padding: 0 ">
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
             <div class="mdl-tabs__tab-bar" >
                 <a href="#basic-search" class="mdl-tabs__tab <%=activeAdvancedSearch ? "" : "is-active" %>">Basic Search</a>
