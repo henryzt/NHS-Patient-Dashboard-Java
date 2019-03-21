@@ -1,5 +1,5 @@
 <%
-    //if search bar is included from search page, and no search result is displayed (by get request), activate advanced search by default
+    //if search bar is included from search page, and no search result is displayed (by get request), show advanced search by default
     boolean activeAdvancedSearch = request.getRequestURI().equals("/search.jsp") && (boolean)request.getAttribute("get");
 %>
 <div class="main">
@@ -105,6 +105,6 @@
                 </form>
             </div>
 
-
+        </div>
     </div>
 </div>
