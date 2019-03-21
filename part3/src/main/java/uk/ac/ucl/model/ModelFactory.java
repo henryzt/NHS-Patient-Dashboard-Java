@@ -8,6 +8,7 @@ import java.util.List;
 public class ModelFactory {
     private static Model model;
     private static Statistics statistics;
+    private static List<Patient> searchResultCache = null;
 
     public static Model getModel() {
       if (model == null) {
@@ -42,6 +43,9 @@ public class ModelFactory {
       int patientPerPage = 30;
       int startIndex = (page-1)*patientPerPage;
       int endIndex = (startIndex + patientPerPage > patients.size()) ? patients.size(): startIndex + patientPerPage ;
+      if(endIndex > patients.size()){
+          endIndex = patients.size();
+      }
 
       List<Patient> currentPagePatients = patients.subList(startIndex, endIndex);
       request.setAttribute("list", currentPagePatients);
@@ -50,4 +54,11 @@ public class ModelFactory {
       request.setAttribute("pageTotal", (patients.size() % patientPerPage == 0) ? (patients.size() / patientPerPage) : (patients.size() / patientPerPage +1));
     }
 
+    public static void setSearchResultCache(List<Patient> patients){
+        searchResultCache = patients;
+    }
+
+    public static List<Patient> getSearchResultCache(){
+       return searchResultCache;
+    }
 }

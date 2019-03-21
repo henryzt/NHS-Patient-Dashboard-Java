@@ -11,9 +11,11 @@
 
         <div class="main">
             <jsp:include page="/component/search-bar.jsp"/>
-            <% if(!(boolean)request.getAttribute("get")){%>
+            <% if(!(boolean)request.getAttribute("get")){
+            String para = (String) request.getAttribute("search_para");
+            %>
 
-            <h3>Search Result<%=!request.getAttribute("search_para").equals("") ? " for '" + request.getAttribute("search_para") + "'" : ""%></h3>
+            <h3>Search Result<%=(para != null && !para.equals("")) ? " for '" + request.getAttribute("search_para") + "'" : ""%></h3>
             <%
                 List<Patient> patients = (List<Patient>) request.getAttribute("list");
                 int size = patients != null ? patients.size() : 0;
@@ -25,7 +27,6 @@
 
                 if (size !=0) {
                     %>
-                    <p>Found <%=size%> matching results</p>
                     <jsp:include page="/component/patient-list.jsp"/>
                     <%
                     if(displayPartialResult){%>

@@ -19,6 +19,10 @@ import java.util.List;
 @WebServlet("/advanced-search.html")
 public class SearchPatientAdvanced extends HttpServlet {
 
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        new SearchPatient().doGet(request,response);
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Model model = ModelFactory.getModel();
@@ -70,7 +74,9 @@ public class SearchPatientAdvanced extends HttpServlet {
 
         request.setAttribute("search_para", para);
         request.setAttribute("get", false);
-        request.setAttribute("list", results);
+
+        ModelFactory.setSearchResultCache(results);
+        ModelFactory.pageDivider(request,results);
 
         forward(request, response);
     }

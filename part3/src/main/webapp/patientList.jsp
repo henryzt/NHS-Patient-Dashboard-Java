@@ -7,7 +7,7 @@
     <body>
         <jsp:include page="/include/header.jsp"/>
 
-              <h3>All Patients</h3>
+              <h3>List of All Patients</h3>
 
               <jsp:include page="/component/patient-list.jsp"/>
               <jsp:include page="/component/search-bar.jsp"/>

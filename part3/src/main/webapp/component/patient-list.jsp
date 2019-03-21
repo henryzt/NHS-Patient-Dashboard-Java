@@ -5,10 +5,11 @@
 
 
 <div class="center">
-    <div style="display: flex; flex-direction: row;  justify-content:space-between;align-items:center;">
-        <div><jsp:include page="/include/pagination.jsp"/></div>
-        <div style="text-align: right"><%=request.getAttribute("numberIndicator")%></div>
-    </div>
+
+
+    <p><%=request.getAttribute("numberIndicator")%></p>
+    <jsp:include page="/include/pagination.jsp"/>
+
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
             <tr>
