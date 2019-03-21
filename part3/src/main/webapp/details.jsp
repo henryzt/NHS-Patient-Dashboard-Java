@@ -14,7 +14,6 @@
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                         type="submit" onClick="javascript:history.go(-1)" style="float:left;width: 10%">Back</button>
                 <h3 style="width: 90%" >Patient Detail</h3>
-
             </div>
             <%
                 Patient patient = (Patient) request.getAttribute("patient");

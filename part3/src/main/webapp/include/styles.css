@@ -1,16 +1,10 @@
 body{
-  background: #fdfdfd;
-}
-
-body {
   margin:0;
   padding:0;
-}
-
-body{
   text-align:center;
   background:#f9f9f9;
 }
+
 .content{
   background:white;
   width:40%;
@@ -114,4 +108,13 @@ td{
   padding: 50px;
   margin: 30px;
   background: white;
+  transition: padding-bottom 2s, padding-top 2s,font-size 2s, color 2s, box-shadow 2s;
+}
+
+.stats:hover{
+  padding-top: 80px;
+  padding-bottom: 80px;
+  font-size: 20px;
+  color: deeppink;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }

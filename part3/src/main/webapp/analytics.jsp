@@ -10,6 +10,7 @@
         <jsp:include page="/include/header.jsp"/>
         <div class="center">
             <h3>Patient Analytics</h3>
+            <p style="color: gray">Hover to zoom in</p>
             <%List<String> info = (List<String>) request.getAttribute("statistics"); %>
 
                 <%for (String field : info) {%>
