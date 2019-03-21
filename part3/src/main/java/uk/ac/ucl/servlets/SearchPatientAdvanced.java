@@ -33,8 +33,12 @@ public class SearchPatientAdvanced extends HttpServlet {
         List<Patient> results = new ArrayList<>();
         for(Patient p : patients) {
             boolean match = true;
-            match = matchAge(p,ageMin,ageMax) && match;
-
+            if(ageMin != null && !ageMin.equals("")){
+                match = (ModelFactory.getPatientAge(p)>=Integer.parseInt(ageMin)) && match;
+            }
+            if(ageMax != null && !ageMax.equals("")){
+                match = (ModelFactory.getPatientAge(p)<=Integer.parseInt(ageMax)) && match;
+            }
             if(gender != null && !gender.equals("")){
                 if(gender.equals("male")){
                     match = p.get("GENDER").equals("M") && match;
@@ -67,21 +71,7 @@ public class SearchPatientAdvanced extends HttpServlet {
         forward(request, response);
     }
 
-    private boolean matchAge(Patient p, String ageMin, String ageMax){
-        boolean minExist = ageMin != null && !ageMin.equals("");
-        boolean maxExist = ageMax != null && !ageMax.equals("");
-        int age = ModelFactory.getPatientAge(p);
-        if(minExist && maxExist){
-            return age >= Integer.parseInt(ageMin) && age <= Integer.parseInt(ageMax);
-        }
-        if(minExist){
-            return age >= Integer.parseInt(ageMin);
-        }
-        if(maxExist){
-            return age <= Integer.parseInt(ageMax);
-        }
-        return true;
-    }
+
 
     private void forward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         ServletContext context = getServletContext();
