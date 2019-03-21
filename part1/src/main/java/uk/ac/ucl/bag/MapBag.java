@@ -6,8 +6,6 @@ import java.util.Iterator;
 public class MapBag<T extends Comparable> extends AbstractBag<T> {
 
 
-
-
     private int maxSize;
     private HashMap<T, Integer> contents;
 
@@ -87,8 +85,6 @@ public class MapBag<T extends Comparable> extends AbstractBag<T> {
 
     private class MapBagUniqueIterator implements Iterator<T>
     {
-
-
         private int index = 0;
         HashMap.Entry<T,Integer>[] valueSet;
 

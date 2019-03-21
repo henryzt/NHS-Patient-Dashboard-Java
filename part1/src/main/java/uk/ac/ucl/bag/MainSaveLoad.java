@@ -1,7 +1,8 @@
 package uk.ac.ucl.bag;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
+
+//For testing file IO functions
 
 public class MainSaveLoad {
     private BagFactory<String> stringFactory = BagFactory.getInstance();

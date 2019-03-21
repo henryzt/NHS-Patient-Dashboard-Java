@@ -1,10 +1,6 @@
 package uk.ac.ucl.bag;
 
-/**
- * A factory to create Bag objects. The class is implemented as a Singleton, such that only one factory
- * object can be created. The factory can be configured with the name of the bag class it creates instances
- * of.
- */
+
 public class BagFactory<T extends Comparable>
 {
   private static BagFactory factory = null;

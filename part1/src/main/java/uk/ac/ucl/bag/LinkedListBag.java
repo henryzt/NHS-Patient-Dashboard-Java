@@ -4,6 +4,29 @@ import java.util.Iterator;
 
 public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
+    private int maxSize;
+    private int nodeCounts;
+    private Node<T> head = null;
+
+
+    public LinkedListBag() throws BagException {
+        this(MAX_SIZE);
+    }
+
+    public LinkedListBag(int maxSize) throws BagException {
+        if (maxSize > MAX_SIZE)
+        {
+            throw new BagException("Attempting to create a Bag with size greater than maximum");
+        }
+        if (maxSize < 1)
+        {
+            throw new BagException("Attempting to create a Bag with size less than 1");
+        }
+        this.nodeCounts = 0;
+        this.maxSize = maxSize;
+    }
+
+
     private class Node<T>{
         public T value;
         public int occurrences;
@@ -18,15 +41,9 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
     }
 
-    private int maxSize;
-    private int nodeCounts;
-    private Node<T> head = null;
-
 
     private Node<T> findNode(T value){
-
         Node<T> current = head;
-
 
         for(int i = 0; i < nodeCounts; i++){
             if(current.value.compareTo(value) == 0){
@@ -40,6 +57,7 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
         return null;
     }
 
+
     private Node<T> findLastNode(){
         Node<T> current = head;
         while(current.next != null){
@@ -48,29 +66,6 @@ public class LinkedListBag<T extends Comparable> extends AbstractBag<T> {
 
         return current;
     }
-
-
-
-    public LinkedListBag() throws BagException
-    {
-        this(MAX_SIZE);
-    }
-
-    public LinkedListBag(int maxSize) throws BagException
-    {
-        if (maxSize > MAX_SIZE)
-        {
-            throw new BagException("Attempting to create a Bag with size greater than maximum");
-        }
-        if (maxSize < 1)
-        {
-            throw new BagException("Attempting to create a Bag with size less than 1");
-        }
-        this.nodeCounts = 0;
-        this.maxSize = maxSize;
-    }
-
-
 
 
 

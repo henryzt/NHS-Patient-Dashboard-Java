@@ -3,7 +3,7 @@ package uk.ac.ucl.bag;
 import java.util.Iterator;
 
 /**
- * Example code illustrating the use of Bag objects.
+ * For testing Basic Bag functions
  */
 public class Main
 {
@@ -39,6 +39,7 @@ public class Main
 
   public void go()
   {
+    //choose one below to test:
 //    factory.setBagClass("ArrayBag");
 //    factory.setBagClass("MapBag");
     factory.setBagClass("LinkedListBag");

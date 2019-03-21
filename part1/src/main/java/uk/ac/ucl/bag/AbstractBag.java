@@ -8,8 +8,6 @@ package uk.ac.ucl.bag;
  * setup to select which bag implementation is to be used.
  */
 import java.io.*;
-import java.util.Iterator;
-import java.util.Scanner;
 
 public abstract class AbstractBag<T extends Comparable> implements Bag<T>
 {
