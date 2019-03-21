@@ -10,7 +10,7 @@
         <jsp:include page="/include/header.jsp"/>
 
         <div class="main">
-            <jsp:include page="/search-bar.jsp"/>
+            <jsp:include page="/component/search-bar.jsp"/>
             <% if(!(boolean)request.getAttribute("get")){%>
 
             <h3>Search Result<%=!request.getAttribute("search_para").equals("") ? " for '" + request.getAttribute("search_para") + "'" : ""%></h3>
@@ -26,7 +26,7 @@
                 if (size !=0) {
                     %>
                     <p>Found <%=size%> matching results</p>
-                    <jsp:include page="/patient-list.jsp"/>
+                    <jsp:include page="/component/patient-list.jsp"/>
                     <%
                     if(displayPartialResult){%>
                     <p style="padding: 30px">Showing first 1000 results, as showing all results might crash the browser. Try to narrow the search query.</p>
