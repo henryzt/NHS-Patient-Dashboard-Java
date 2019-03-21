@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,14 +30,57 @@ public class SearchPatientAdvanced extends HttpServlet {
         String initial = request.getParameter("initial");
 
         List<Patient> patients = model.getPatients();
+        List<Patient> results = new ArrayList<>();
+        for(Patient p : patients) {
+            boolean match = true;
+            match = matchAge(p,ageMin,ageMax) && match;
+
+            if(gender != null && !gender.equals("")){
+                if(gender.equals("male")){
+                    match = p.get("GENDER").equals("M") && match;
+                }
+                if(gender.equals("female")){
+                    match = p.get("GENDER").equals("F") && match;
+                }
+            }
+            if(city != null && !city.equals("")){
+                match = p.findRecord(city) && match;
+            }
+            if(para != null && !para.equals("")){
+                match = p.findRecord(para) && match;
+            }
+            if(initial != null && !initial.equals("")){
+                match = (p.get("FIRST").toLowerCase().startsWith(initial.toLowerCase()) || p.get("LAST").toLowerCase().startsWith(initial.toLowerCase()) ) && match;
+            }
+
+            if(match){
+                results.add(p);
+            }
+
+        }
 
 
-
-        List<Patient> searchResult = model.search(para);
         request.setAttribute("search_para", para);
-        request.setAttribute("list", searchResult);
+        request.setAttribute("get", false);
+        request.setAttribute("list", results);
 
         forward(request, response);
+    }
+
+    private boolean matchAge(Patient p, String ageMin, String ageMax){
+        boolean minExist = ageMin != null && !ageMin.equals("");
+        boolean maxExist = ageMax != null && !ageMax.equals("");
+        int age = ModelFactory.getPatientAge(p);
+        if(minExist && maxExist){
+            return age >= Integer.parseInt(ageMin) && age <= Integer.parseInt(ageMax);
+        }
+        if(minExist){
+            return age >= Integer.parseInt(ageMin);
+        }
+        if(maxExist){
+            return age <= Integer.parseInt(ageMax);
+        }
+        return true;
     }
 
     private void forward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

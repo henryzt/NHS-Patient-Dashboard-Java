@@ -16,16 +16,26 @@
     <h3>Search Result for '<%=request.getAttribute("search_para")%>'</h3>
     <%
         List<Patient> patients = (List<Patient>) request.getAttribute("list");
+        int size = patients.size();
+        boolean showAll = request.getParameter("showall")!=null && request.getParameter("showall").equals("true");
+        boolean displayPartialResult = !showAll && size > 1000;
+        if(displayPartialResult){
+            request.setAttribute("list",patients.subList(0,1000));
+        }
 
-        if (patients != null && patients.size() !=0)
+        if (patients != null && size !=0)
         {
     %>
+        <p>Found <%=size%> matching results</p>
         <jsp:include page="/patient-list.jsp"/>
     <%
-        } else
-        {%>
+            if(displayPartialResult){%>
+            <p style="padding: 30px">Showing first 1000 results, as showing all results might crash the browser. Try to narrow the search query.</p>
+            <%}
+
+        } else {%>
         <p>Nothing found</p>
-        <%}%>
+    <%}%>
 
 </div>
 

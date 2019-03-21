@@ -32,11 +32,11 @@
                             <td><b>Age Range</b></td>
                             <td style="width: 70%;">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 30%;">
-                                    <input class="mdl-textfield__input" maxlength="3" type="text" pattern="-?[0-9]*(\.[0-9]+)?"  id="min" name="age_min"/>
+                                    <input class="mdl-textfield__input" maxlength="3" type="text" pattern="-?[0-9]*(\.[0-9]+)?"  id="min" name="min"/>
                                     <label class="mdl-textfield__label" for="search">Minimum</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 30%;">
-                                    <input class="mdl-textfield__input" maxlength="3" type="text" pattern="-?[0-9]*(\.[0-9]+)?"  id="max" name="age_max"/>
+                                    <input class="mdl-textfield__input" maxlength="3" type="text" pattern="-?[0-9]*(\.[0-9]+)?"  id="max" name="max"/>
                                     <label class="mdl-textfield__label" for="search">Maximum</label>
                                 </div>
                             </td>
@@ -48,15 +48,15 @@
                             <td>
                                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="any">
                                     <input checked class="mdl-radio__button" id="any" name="gender" type="radio"
-                                           value="on">
+                                           value="any">
                                     <span class="mdl-radio__label">Any</span>
                                 </label>
                                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="male">
-                                    <input class="mdl-radio__button" id="male" name="gender" type="radio" value="off">
+                                    <input class="mdl-radio__button" id="male" name="gender" type="radio" value="male">
                                     <span class="mdl-radio__label">Male</span>
                                 </label>
                                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="female">
-                                    <input class="mdl-radio__button" id="female" name="gender" type="radio" value="off">
+                                    <input class="mdl-radio__button" id="female" name="gender" type="radio" value="female">
                                     <span class="mdl-radio__label">Female</span>
                                 </label>
                             </td>
@@ -74,25 +74,30 @@
                         </tr>
 
                         <tr>
-                            <td><b>Name</b></td>
+                            <td><b>Initials</b></td>
                             <td style="width: 70%;">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 60%;">
-                                    <input class="mdl-textfield__input" type="text" id="field" name="search_string"/>
-                                    <label class="mdl-textfield__label" for="search">Name and any other fields</label>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 40%;">
+                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="first" name="initial"/>
+                                    <label class="mdl-textfield__label" for="search">First name start with</label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 40%;">
+                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="last" name="initial"/>
+                                    <label class="mdl-textfield__label" for="search">Last name start with</label>
                                 </div>
                             </td>
                         </tr>
 
                         <tr>
-                            <td><b>Initial</b></td>
+                            <td><b>Query</b></td>
                             <td style="width: 70%;">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 40%;">
-                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="initial" name="initial"/>
-                                    <label class="mdl-textfield__label" for="search">Name start with</label>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 60%;">
+                                    <input class="mdl-textfield__input" type="text" id="field" name="search_string"/>
+                                    <label class="mdl-textfield__label" for="search">Name or any other fields</label>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+
+
                     </table>
 
                     <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
