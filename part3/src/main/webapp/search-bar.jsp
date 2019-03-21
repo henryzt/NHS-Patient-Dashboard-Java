@@ -77,11 +77,11 @@
                             <td><b>Initials</b></td>
                             <td style="width: 70%;">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 40%;">
-                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="first" name="initial"/>
+                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="first" name="first"/>
                                     <label class="mdl-textfield__label" for="search">First name start with</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 40%;">
-                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="last" name="initial"/>
+                                    <input class="mdl-textfield__input" maxlength="1" type="text" id="last" name="last"/>
                                     <label class="mdl-textfield__label" for="search">Last name start with</label>
                                 </div>
                             </td>

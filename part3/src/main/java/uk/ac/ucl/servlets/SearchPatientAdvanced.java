@@ -27,7 +27,8 @@ public class SearchPatientAdvanced extends HttpServlet {
         String ageMax = request.getParameter("max");
         String gender = request.getParameter("gender");
         String city = request.getParameter("city");
-        String initial = request.getParameter("initial");
+        String initialFirst = request.getParameter("first");
+        String initialLast = request.getParameter("last");
 
         List<Patient> patients = model.getPatients();
         List<Patient> results = new ArrayList<>();
@@ -53,9 +54,14 @@ public class SearchPatientAdvanced extends HttpServlet {
             if(para != null && !para.equals("")){
                 match = p.findRecord(para) && match;
             }
-            if(initial != null && !initial.equals("")){
-                match = (p.get("FIRST").toLowerCase().startsWith(initial.toLowerCase()) || p.get("LAST").toLowerCase().startsWith(initial.toLowerCase()) ) && match;
+            if(initialFirst != null && !initialFirst.equals("")){
+                match = (p.get("FIRST").toLowerCase().startsWith(initialFirst.toLowerCase())) && match;
             }
+            if(initialLast != null && !initialLast.equals("")){
+                match = (p.get("LAST").toLowerCase().startsWith(initialLast.toLowerCase()) ) && match;
+            }
+
+
 
             if(match){
                 results.add(p);

@@ -1,5 +1,6 @@
 <%@ page import="uk.ac.ucl.model.Patient" %>
 <%@ page import="java.util.List" %>
+<%@ page import="uk.ac.ucl.model.ModelFactory" %>
 <%--
   Created by IntelliJ IDEA.
   User: henry
@@ -16,6 +17,8 @@
             <th class="mdl-data-table__cell--non-numeric" style="width: 50%">First Name</th>
             <th class="mdl-data-table__cell--non-numeric" style="width: 50%">Last Name</th>
             <th class="mdl-data-table__cell--non-numeric">Gender</th>
+            <th class="mdl-data-table__cell--non-numeric">City</th>
+            <th class="mdl-data-table__cell--non-numeric">Age</th>
             <th class="mdl-data-table__cell--non-numeric">Birthday</th>
             <th class="mdl-data-table__cell--non-numeric">Race</th>
             <th class="mdl-data-table__cell--non-numeric" style="text-align: center">Detail</th>
@@ -33,6 +36,8 @@
             <td class="mdl-data-table__cell--non-numeric"><%=patient.get("FIRST")%></td>
             <td class="mdl-data-table__cell--non-numeric"><%=patient.get("LAST")%></td>
             <td class="mdl-data-table__cell--non-numeric"><%=patient.get("GENDER")%></td>
+            <td class="mdl-data-table__cell--non-numeric"><%=patient.get("CITY")%></td>
+            <td class="mdl-data-table__cell--non-numeric"><%=ModelFactory.getPatientAge(patient)%></td>
             <td class="mdl-data-table__cell--non-numeric"><%=patient.get("BIRTHDATE")%></td>
             <td class="mdl-data-table__cell--non-numeric"><%=patient.get("RACE")%></td>
             <td class="mdl-data-table__cell--non-numeric"><a class="mdl-button mdl-js-button mdl-button--accent" style="padding: 0;" href="<%=href%>">View</a></td>
