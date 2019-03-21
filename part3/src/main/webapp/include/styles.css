@@ -108,7 +108,7 @@ td{
   padding: 50px;
   margin: 30px;
   background: white;
-  transition: padding-bottom 2s, padding-top 2s,font-size 2s, color 2s, box-shadow 2s;
+  transition: padding-bottom 1s, padding-top 1s,font-size 1s, color 1s, box-shadow 1s;
 }
 
 .stats:hover{

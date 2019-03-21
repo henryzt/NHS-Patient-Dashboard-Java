@@ -97,7 +97,7 @@ public class Statistics {
         info.add("The youngest patients is born in "+ maxBorn);
         info.add("The eldest patients is born in "+ minBorn);
         info.add("There are "+ deceasedCount + " deceased patients in the list");
-        info.add("The eldest patients is "+ maxAge +" year old");
+        info.add("The eldest patients is "+ maxAge +" years old");
         info.add("The youngest patients is "+ minAge + " year(s) old");
         info.add("The average age of all patients is "+ averAge );
         info.add("Dashboard made by Henry Zhang - 18007308");

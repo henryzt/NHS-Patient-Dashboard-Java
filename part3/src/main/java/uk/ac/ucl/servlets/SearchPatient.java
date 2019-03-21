@@ -32,6 +32,8 @@ public class SearchPatient extends HttpServlet {
         request.setAttribute("search_para", para);
         request.setAttribute("list", searchResult);
 
+        ModelFactory.pageDivider(request,searchResult);
+
         forward(request, response);
     }
 

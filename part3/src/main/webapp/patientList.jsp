@@ -8,11 +8,8 @@
         <jsp:include page="/include/header.jsp"/>
 
               <h3>All Patients</h3>
-              <p><%=request.getAttribute("numberIndicator")%></p>
 
-              <jsp:include page="/include/pagination.jsp"/>
               <jsp:include page="/component/patient-list.jsp"/>
-              <jsp:include page="/include/pagination.jsp"/>
               <jsp:include page="/component/search-bar.jsp"/>
 
          <jsp:include page="/include/footer.jsp"/>

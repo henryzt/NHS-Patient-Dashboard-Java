@@ -61,8 +61,6 @@ public class SearchPatientAdvanced extends HttpServlet {
                 match = (p.get("LAST").toLowerCase().startsWith(initialLast.toLowerCase()) ) && match;
             }
 
-
-
             if(match){
                 results.add(p);
             }

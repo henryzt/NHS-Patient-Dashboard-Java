@@ -2,8 +2,14 @@
 <%@ page import="java.util.List" %>
 <%@ page import="uk.ac.ucl.model.ModelFactory" %>
 
-<div>
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp center">
+
+
+<div class="center">
+    <div style="display: flex; flex-direction: row;  justify-content:space-between;align-items:center;">
+        <div><jsp:include page="/include/pagination.jsp"/></div>
+        <div style="text-align: right"><%=request.getAttribute("numberIndicator")%></div>
+    </div>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Prefix</th>
@@ -35,3 +41,4 @@
         </tbody>
     </table>
 </div>
+<jsp:include page="/include/pagination.jsp"/>

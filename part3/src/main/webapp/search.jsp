@@ -16,7 +16,7 @@
             <h3>Search Result<%=!request.getAttribute("search_para").equals("") ? " for '" + request.getAttribute("search_para") + "'" : ""%></h3>
             <%
                 List<Patient> patients = (List<Patient>) request.getAttribute("list");
-                int size = patients.size();
+                int size = patients != null ? patients.size() : 0;
                 boolean showAll = request.getParameter("showall")!=null && request.getParameter("showall").equals("true");
                 boolean displayPartialResult = !showAll && size > 1000;
                 if(displayPartialResult){
