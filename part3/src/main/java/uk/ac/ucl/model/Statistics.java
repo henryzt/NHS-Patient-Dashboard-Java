@@ -1,4 +1,6 @@
 package uk.ac.ucl.model;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 public class Statistics {
@@ -10,6 +12,7 @@ public class Statistics {
 
     Statistics(List<Patient> patients){
         this.patients = patients;
+        calculate();
     }
 
     private void calculate(){
@@ -17,7 +20,7 @@ public class Statistics {
         for(Patient p : patients){
 
             int current = getYear(p, "BIRTHDATE");
-            int currentAge = getAge(p, current);
+            int currentAge = getAge(p, p.get("BIRTHDATE"));
 
             if(!p.get("DEATHDATE").equals("")) {
                 deceasedCount++;
@@ -48,14 +51,14 @@ public class Statistics {
     }
 
     public int getAge(Patient p){
-        return getAge(p, getYear(p, "BIRTHDATE"));
+        return getAge(p, p.get("BIRTHDATE"));
     }
 
-    private int getAge(Patient p, int birthyear){
+    private int getAge(Patient p, String birthdate){
         if(!p.get("DEATHDATE").equals("")){
-            return getYear(p, "DEATHDATE") - birthyear;
+            return Period.between(LocalDate.parse(birthdate), LocalDate.parse(p.get("DEATHDATE"))).getYears();
         }else {
-            return Calendar.getInstance().get(Calendar.YEAR) - birthyear;
+            return Period.between(LocalDate.parse(birthdate), LocalDate.now()).getYears();
         }
     }
 
@@ -89,7 +92,6 @@ public class Statistics {
 
 
     public List<String> getStatisticInfo(){
-        calculate();
         List<String> info = new ArrayList<>();
         info.add("This list contain "+ patients.size() + " patients in total");
         info.add("The most common age is "+ comAge.getKey() + ", with " + comAge.getValue() + " patients at this age " );
