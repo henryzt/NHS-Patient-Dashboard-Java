@@ -20,7 +20,8 @@ import java.util.List;
 public class SearchPatientAdvanced extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        new SearchPatient().doGet(request,response);
+        request.setAttribute("get", request.getParameter("page") == null);
+        forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,9 +75,9 @@ public class SearchPatientAdvanced extends HttpServlet {
 
         request.setAttribute("search_para", para);
         request.setAttribute("get", false);
-
-        ModelFactory.setSearchResultCache(results);
-        ModelFactory.pageDivider(request,results);
+        request.setAttribute("list", results);
+//        ModelFactory.setSearchResultCache(results);
+//        ModelFactory.pageDivider(request,results);
 
         forward(request, response);
     }

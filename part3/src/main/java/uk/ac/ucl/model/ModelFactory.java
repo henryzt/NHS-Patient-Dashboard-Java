@@ -8,7 +8,7 @@ import java.util.List;
 public class ModelFactory {
     private static Model model;
     private static Statistics statistics;
-    private static List<Patient> searchResultCache = null;
+//    private static List<Patient> searchResultCache = null;
 
     public static Model getModel() {
       if (model == null) {
@@ -54,11 +54,11 @@ public class ModelFactory {
       request.setAttribute("pageTotal", (patients.size() % patientPerPage == 0) ? (patients.size() / patientPerPage) : (patients.size() / patientPerPage +1));
     }
 
-    public static void setSearchResultCache(List<Patient> patients){
-        searchResultCache = patients;
-    }
-
-    public static List<Patient> getSearchResultCache(){
-       return searchResultCache;
-    }
+//    public static void setSearchResultCache(List<Patient> patients){
+//        searchResultCache = patients;
+//    }
+//
+//    public static List<Patient> getSearchResultCache(){
+//       return searchResultCache;
+//    }
 }

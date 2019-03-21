@@ -1,5 +1,6 @@
 <%@ page import="uk.ac.ucl.model.Patient" %>
 <%@ page import="java.util.List" %>
+<%@ page import="uk.ac.ucl.model.ModelFactory" %>
 
 <html>
     <head>
@@ -13,6 +14,10 @@
             <jsp:include page="/component/search-bar.jsp"/>
             <% if(!(boolean)request.getAttribute("get")){
             String para = (String) request.getAttribute("search_para");
+            if(request.getParameter("page") == null){
+                session.setAttribute("list", request.getAttribute("list"));
+            }
+            ModelFactory.pageDivider(request,(List<Patient>) session.getAttribute("list"));
             %>
 
             <h3>Search Result<%=(para != null && !para.equals("")) ? " for '" + request.getAttribute("search_para") + "'" : ""%></h3>
