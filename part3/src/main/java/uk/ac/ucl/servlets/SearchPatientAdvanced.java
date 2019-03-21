@@ -49,7 +49,7 @@ public class SearchPatientAdvanced extends HttpServlet {
                 }
             }
             if(city != null && !city.equals("")){
-                match = p.findRecord(city) && match;
+                match = p.get("CITY").toLowerCase().equals(city.toLowerCase()) && match;
             }
             if(para != null && !para.equals("")){
                 match = p.findRecord(para) && match;

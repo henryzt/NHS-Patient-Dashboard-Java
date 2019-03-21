@@ -2,6 +2,7 @@ package uk.ac.ucl.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 // This class gives access to the model to any other class that needs it.
 // Calling the static method getModel (i.e., ModelFactory.getModel()) returns
@@ -24,10 +25,17 @@ public class ModelFactory
   }
 
   public static int getPatientAge(Patient p) {
-    if (model != null) {
-      return statistics.getAge(p);
+    if (model == null) {
+      getModel();
     }
-    return -1;
+    return statistics.getAge(p);
+  }
+
+  public static List<String> getStatistics(){
+    if (model == null) {
+      getModel();
+    }
+    return statistics.getStatisticInfo();
   }
 
 }

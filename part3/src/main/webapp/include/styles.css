@@ -7,10 +7,6 @@ body {
   padding:0;
 }
 
-/*.clearBoth {*/
-  /*clear: both;*/
-/*}*/
-
 body{
   text-align:center;
   background:#f9f9f9;
@@ -112,4 +108,10 @@ table{
 
 td{
   padding-bottom: 15px;
+}
+
+.stats{
+  padding: 50px;
+  margin: 30px;
+  background: white;
 }

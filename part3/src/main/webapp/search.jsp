@@ -13,7 +13,7 @@
     <jsp:include page="/search-bar.jsp"/>
     <% if(!(boolean)request.getAttribute("get")){%>
 
-    <h3>Search Result for '<%=request.getAttribute("search_para")%>'</h3>
+    <h3>Search Result<%=!request.getAttribute("search_para").equals("")?" for '"+request.getAttribute("search_para")+"'":""%></h3>
     <%
         List<Patient> patients = (List<Patient>) request.getAttribute("list");
         int size = patients.size();
@@ -34,8 +34,10 @@
             <%}
 
         } else {%>
-        <p>Nothing found</p>
+        <p>Nothing is found matching your criteria</p>
     <%}%>
+
+
 
 </div>
 
