@@ -37,8 +37,8 @@ public class GUIController {
     }
 
     public List<String> getPatientNames(){
-        //priority search result
         if(searchResult != null){
+            //prioritise search result display
             return model.getNameArray(searchResult);
         }
         if(patientNameList == null) {
@@ -48,7 +48,6 @@ public class GUIController {
     }
 
     public String getPatientJson(int index){
-        //priority search result
         if(searchResult != null){
             return model.getPatientJson(model.getPatientByIndex(searchResult,index));
         }
@@ -56,7 +55,6 @@ public class GUIController {
     }
 
     public String getAllJson(){
-        //priority search result
         if(searchResult != null){
             return model.getAllPatientsJson(searchResult);
         }
@@ -70,8 +68,9 @@ public class GUIController {
         return model.saveJsonTo(path, getAllJson());
     }
 
-    //check if the patients csv is loaded correctly (if FIRST & LAST exists)
+
     public boolean checkLoadedPatientName(){
+        //check if the patients csv is loaded correctly (if FIRST & LAST exists)
         Patient p = model.getPatientByIndex(0);
         return (p.get("FIRST") ==null || p.get("LAST") ==null);
     }

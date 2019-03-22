@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Patient {
     private LinkedHashMap<String,String> entry;
@@ -15,10 +13,6 @@ public class Patient {
 
     public String get(String field){
         return entry.get(field);
-    }
-
-    public void set(String field, String value){
-        entry.replace(field,value);
     }
 
     public String[] getFields(){

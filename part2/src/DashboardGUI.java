@@ -34,10 +34,8 @@ public class DashboardGUI {
         JButton bReadCsv = new JButton("Load From CSV");
         JButton bReadJson = new JButton("Load From Json");
         JButton bSaveJson = new JButton("Save to Json");
-//        b.setBounds(130, 100, 100, 40);
 
         pNorth.setLayout(new FlowLayout(FlowLayout.CENTER));
-//        pNorth.setBorder(BorderFactory.createEmptyBorder(5, 80, 5, 80));
 
         pNorth.add(bShowAll);
         pNorth.add(bReadCsv);
@@ -45,11 +43,10 @@ public class DashboardGUI {
         pNorth.add(bSaveJson);
 
         bShowAll.setVisible(false);
-//        pNorth.setPreferredSize(new Dimension(900, 50));
+
+
 
         //--------------------West
-
-
         pWest.setLayout(new BorderLayout());
 
         listModel = new DefaultListModel<>();
@@ -81,8 +78,6 @@ public class DashboardGUI {
         bottomLeft.add(bClearSearch);
         bClearSearch.setVisible(false);
 
-//        JPanel bottomCenter = new JPanel();
-//        bottomCenter.add(new JLabel());
 
         JPanel bottomRight = new JPanel();
         JButton bStats = new JButton("Stats");
@@ -93,17 +88,15 @@ public class DashboardGUI {
         bottomRight.add(bStats);
 
         pSouth.add(bottomLeft);
-//        pSouth.add(bottomCenter);
         pSouth.add(bottomRight);
 
-
-//        pSouth.setPreferredSize(new Dimension(900, 50));
         pSouth.setBorder(createEmptyBorder(0, 5, 0, 5));
+
 
 
         //---------------------Center
 
-        details = new JTextArea("Load Patient File to Begin");
+        details = new JTextArea();
         details.setWrapStyleWord(true);
         JScrollPane spText = new JScrollPane();
         spText.setViewportView(details);
@@ -115,7 +108,6 @@ public class DashboardGUI {
 
 
 
-
         //---------------------All
         panelMain.setLayout(new BorderLayout());
         panelMain.add(pNorth, BorderLayout.NORTH);
@@ -123,12 +115,11 @@ public class DashboardGUI {
         panelMain.add(pSouth , BorderLayout.SOUTH);
         panelMain.add(pEast , BorderLayout.CENTER);
 
-
-
         f.add(panelMain);
         f.setSize(950, 650);
         f.setLocationRelativeTo(null);
         f.setVisible(true);
+
 
 
         //----------------------Actions
@@ -180,6 +171,8 @@ public class DashboardGUI {
         showStatistics();
     }
 
+
+
     private void loadFile(int fileType){
         String path = fileChooser(FileDialog.LOAD);
         if(path == null) {
@@ -202,7 +195,7 @@ public class DashboardGUI {
 
             JDialog dialog = showLoading(f);
 
-            //Show loading while load
+            //Show loading while loading
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -210,9 +203,6 @@ public class DashboardGUI {
                     dialog.dispose();
                 }
             }).start();
-
-
-
 
             dialog.setVisible(true);
 
@@ -239,11 +229,14 @@ public class DashboardGUI {
         return true;
     }
 
+
+
     private void refreshList(){
         listModel.clear();
         listModel.addAll(controller.getPatientNames());
         details.setText(controller.getAllJson());
     }
+
 
     private void saveTo(){
         String path = fileChooser(FileDialog.SAVE);
@@ -261,6 +254,8 @@ public class DashboardGUI {
 
     }
 
+
+
     private String fileChooser(int mode){
         FileDialog dialog = new FileDialog(f, "Select a File Path");
         dialog.setMode(mode);
@@ -273,12 +268,15 @@ public class DashboardGUI {
     }
 
 
+
     private JDialog showLoading(JFrame f){
         final JOptionPane optionPane = new JOptionPane("Loading, please wait...", JOptionPane.INFORMATION_MESSAGE,
                 JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null); //create an empty loading dialog
         return optionPane.createDialog(f, "Notice");
 
     }
+
+
 
     private void showStatistics(){
         Timer timer = new Timer();
@@ -291,6 +289,7 @@ public class DashboardGUI {
 
         timer.schedule(task, 1000,4000);
     }
+
 
 
     public static void main(String[] args) {

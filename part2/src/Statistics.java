@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 public class Statistics {
@@ -18,10 +20,10 @@ public class Statistics {
             int current = getYear(p, "BIRTHDATE");
             int currentAge;
             if(!p.get("DEATHDATE").equals("")){
-                currentAge = getYear(p, "DEATHDATE") - current;
+                currentAge = Period.between(LocalDate.parse(p.get("BIRTHDATE")), LocalDate.parse(p.get("DEATHDATE"))).getYears();;
                 deceasedCount++;
             }else {
-                currentAge = Calendar.getInstance().get(Calendar.YEAR) - current;
+                currentAge = Period.between(LocalDate.parse(p.get("BIRTHDATE")), LocalDate.now()).getYears();
             }
             ageSum += currentAge;
             age.add(currentAge);
@@ -85,7 +87,7 @@ public class Statistics {
         info.add("The youngest patients is born in "+ maxBorn);
         info.add("The eldest patients is born in "+ minBorn);
         info.add("There are "+ deceasedCount + " deceased patients in the list");
-        info.add("The eldest patients is "+ maxAge +" year old");
+        info.add("The eldest patients is "+ maxAge +" years old");
         info.add("The youngest patients is "+ minAge + " year(s) old");
         info.add("The average age of all patients is "+ averAge );
         info.add("Dashboard made by Henry Zhang - 18007308");

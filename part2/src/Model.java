@@ -56,9 +56,6 @@ public class Model {
         return p.get("FIRST") + " " + p.get("LAST");
     }
 
-    public String getId(Patient p){
-        return p.get("ID");
-    }
 
     public Patient getPatientByIndex(int i){
         return patients.get(i);

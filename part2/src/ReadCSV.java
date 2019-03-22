@@ -6,12 +6,6 @@ import java.util.List;
 
 public class ReadCSV {
 
-    ReadCSV(){
-
-    }
-
-
-
     private List<String> readFile(String fileName) {
 
         List<String> content = new ArrayList<>();
