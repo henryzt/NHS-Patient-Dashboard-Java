@@ -10,6 +10,7 @@
         <a href="patients.html" class="nav">Home</a>
         <a href="search.html" class="nav">Search</a>
         <a href="analytics.html" class="nav">Analytics</a>
+        <a href="upload.html" class="nav">Upload</a>
       </div>
     </div>
     </div>
