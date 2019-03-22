@@ -13,7 +13,7 @@ public class ModelFactory {
     public static Model getModel() {
       if (model == null) {
         model = new Model();
-        model.readFromCSV("patients/patients100000.csv");
+        model.readFromCSV("patients/patients10000.csv");
         statistics = new Statistics(model.getPatients());
       }
       return model;
