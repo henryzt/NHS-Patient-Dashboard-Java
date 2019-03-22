@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * For testing Basic Bag functions
  */
-public class Main
+public class MainTest
 {
   private BagFactory<String> factory = BagFactory.getInstance();
 
@@ -115,6 +115,6 @@ public class Main
 
   public static void main(String[] args)
   {
-    new Main().go();
+    new MainTest().go();
   }
 }

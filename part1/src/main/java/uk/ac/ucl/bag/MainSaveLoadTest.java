@@ -2,9 +2,9 @@ package uk.ac.ucl.bag;
 
 import java.io.IOException;
 
-//For testing file IO functions
+//For testing file IO functions, string / double type etc
 
-public class MainSaveLoad {
+public class MainSaveLoadTest {
     private BagFactory<String> stringFactory = BagFactory.getInstance();
     private BagFactory<Double> doubleFactory = BagFactory.getInstance();
 
@@ -44,7 +44,7 @@ public class MainSaveLoad {
 
     public static void main(String[] args){
         try {
-            new MainSaveLoad().run();
+            new MainSaveLoadTest().run();
         }catch (BagException e){
             e.printStackTrace();
         }
