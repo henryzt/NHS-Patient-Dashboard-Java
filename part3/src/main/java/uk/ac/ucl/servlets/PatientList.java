@@ -20,7 +20,6 @@ public class PatientList extends HttpServlet
     // Code to use the model to process something would go here.
     Model model = ModelFactory.getModel();
     List<Patient> patients = model.getPatients();
-
     ModelFactory.pageDivider(request,patients);
 
 

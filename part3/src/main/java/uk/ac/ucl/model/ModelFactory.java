@@ -8,12 +8,11 @@ import java.util.List;
 public class ModelFactory {
     private static Model model;
     private static Statistics statistics;
-//    private static List<Patient> searchResultCache = null;
 
     public static Model getModel() {
       if (model == null) {
         model = new Model();
-        model.readFromCSV("patients/patients10000.csv");
+        model.readFromCSV("patients/patients10000.csv"); //change csv file path here
         statistics = new Statistics(model.getPatients());
       }
       return model;

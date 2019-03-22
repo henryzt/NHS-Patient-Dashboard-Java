@@ -6,4 +6,3 @@
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 <meta charset="UTF-8">
-<%--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">--%>

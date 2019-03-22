@@ -1,7 +1,5 @@
 package uk.ac.ucl.model;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Patient {
     private LinkedHashMap<String,String> entry;
