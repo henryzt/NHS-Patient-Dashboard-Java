@@ -118,3 +118,12 @@ td{
   color: deeppink;
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
+
+.upload-block{
+  background:white;
+  width:40%;
+  padding:30px;
+  margin-bottom: 30px;
+  margin-left:auto;
+  margin-right:auto;
+}
