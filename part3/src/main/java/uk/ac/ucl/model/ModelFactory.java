@@ -8,14 +8,19 @@ import java.util.List;
 public class ModelFactory {
     private static Model model;
     private static Statistics statistics;
+    private static String currentFile = "patients10000.csv";
 
     public static Model getModel() {
       if (model == null) {
-        model = new Model();
-        model.readFromCSV("patients/patients10000.csv"); //change csv file path here
-        statistics = new Statistics(model.getPatients());
+          refreshModel(currentFile);
       }
       return model;
+    }
+
+    private static void refreshModel(String filePath){
+        model = new Model();
+        model.readFromCSV("patients/" + filePath);
+        statistics = new Statistics(model.getPatients());
     }
 
     public static int getPatientAge(Patient p) {
@@ -51,6 +56,22 @@ public class ModelFactory {
       request.setAttribute("numberIndicator","Showing " + (startIndex + 1) + " - " + endIndex + " of " + patients.size() +" patients");
       request.setAttribute("pageCurrent", page);
       request.setAttribute("pageTotal", (patients.size() % patientPerPage == 0) ? (patients.size() / patientPerPage) : (patients.size() / patientPerPage +1));
+    }
+
+    public static String getCurrentFile(){
+        return currentFile;
+    }
+
+    public static boolean setCurrentFile(String fileName){
+        try {
+            refreshModel(fileName);
+            currentFile = fileName;
+            return true;
+        }catch (Exception e){
+            refreshModel(currentFile);
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }
