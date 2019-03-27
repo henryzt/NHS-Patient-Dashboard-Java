@@ -19,8 +19,13 @@ public class ModelFactory {
 
     private static void refreshModel(String filePath){
         model = new Model();
-        model.readFromCSV("patients/" + filePath);
-        statistics = new Statistics(model.getPatients());
+
+        new File("patients/").mkdirs();
+        String path = "patients/" + filePath;
+        if(new File(path).exists()) {
+            model.readFromCSV("patients/" + filePath);
+            statistics = new Statistics(model.getPatients());
+        }
     }
 
     public static int getPatientAge(Patient p) {
@@ -34,7 +39,7 @@ public class ModelFactory {
       if (model == null) {
         getModel();
       }
-      return statistics.getStatisticInfo();
+      return statistics != null ? statistics.getStatisticInfo() : null;
     }
 
 

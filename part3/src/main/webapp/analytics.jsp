@@ -13,11 +13,13 @@
             <p style="color: gray">Hover to zoom in</p>
             <%List<String> info = (List<String>) request.getAttribute("statistics"); %>
 
-                <%for (String field : info) {%>
+                <%if(info != null){
+                    for (String field : info) {%>
                         <div class="mdl-shadow--2dp stats" >
                             <b><%=field%></b>
                         </div>
-                <% } %>
+                <% }
+                }%>
 
         </div>
         <jsp:include page="/include/footer.jsp"/>
